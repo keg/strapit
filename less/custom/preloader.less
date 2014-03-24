@@ -51,19 +51,7 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
     z-index: -1;
 }
-@-webkit-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-@-moz-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-@-ms-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-@-webkit-keyframes move {
+@keyframes move {
     0%   { background-position: 0 0; }
     100% { background-position: 50px 50px; }
 }
@@ -96,41 +84,11 @@
 }
 .preloader-circles:after {
   z-index: 1;
-  -webkit-animation: gogoloader 2s infinite 1s;
-  -o-animation: gogoloader 2s infinite 1s;
   animation: gogoloader 2s infinite 1s;
 }
 .preloader-circles:before {
   z-index: 2;
-  -webkit-animation: gogoloader 2s infinite;
-  -o-animation: gogoloader 2s infinite;
   animation: gogoloader 2s infinite;
-}
-@-webkit-keyframes gogoloader {
-  0% {
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    opacity: 0;
-  }
-}
-@-o-keyframes gogoloader {
-  0% {
-    -o-transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -o-transform: scale(1);
-    opacity: 0;
-  }
 }
 @keyframes gogoloader {
   0% {
