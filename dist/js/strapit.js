@@ -305,7 +305,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
 
   Carousel.prototype.getActiveIndex = function () {
     this.$active = this.$element.find('.item.active')
-    this.$items  = this.$active.parent().children()
+    this.$items  = this.$active.parent().children('.item')
 
     return this.$items.index(this.$active)
   }
@@ -2363,7 +2363,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     var content = this.getContent()
 
     $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content')[ // we use append for html objects to maintain js events
+    $tip.find('.popover-content').empty()[ // we use append for html objects to maintain js events
       this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
     ](content)
 

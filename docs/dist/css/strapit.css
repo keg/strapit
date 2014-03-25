@@ -2474,6 +2474,7 @@ table th.col {
 .table-hover > tbody > tr > td.active:hover,
 .table-hover > tbody > tr > th.active:hover,
 .table-hover > tbody > tr.active:hover > td,
+.table-hover > tbody > tr:hover > .active,
 .table-hover > tbody > tr.active:hover > th {
   background-color: #bfbfbf;
 }
@@ -2494,6 +2495,7 @@ table th.col {
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr:hover > .success,
 .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6;
 }
@@ -2514,6 +2516,7 @@ table th.col {
 .table-hover > tbody > tr > td.warning:hover,
 .table-hover > tbody > tr > th.warning:hover,
 .table-hover > tbody > tr.warning:hover > td,
+.table-hover > tbody > tr:hover > .warning,
 .table-hover > tbody > tr.warning:hover > th {
   background-color: #faf2cc;
 }
@@ -2534,6 +2537,7 @@ table th.col {
 .table-hover > tbody > tr > td.danger:hover,
 .table-hover > tbody > tr > th.danger:hover,
 .table-hover > tbody > tr.danger:hover > td,
+.table-hover > tbody > tr:hover > .danger,
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
@@ -2554,6 +2558,7 @@ table th.col {
 .table-hover > tbody > tr > td.info:hover,
 .table-hover > tbody > tr > th.info:hover,
 .table-hover > tbody > tr.info:hover > td,
+.table-hover > tbody > tr:hover > .info,
 .table-hover > tbody > tr.info:hover > th {
   background-color: #c4e3f3;
 }
@@ -2813,6 +2818,7 @@ legend {
 }
 label {
   display: inline-block;
+  max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -3016,6 +3022,7 @@ select[multiple].input-lg {
   position: absolute;
   top: 27px;
   right: 0;
+  z-index: 2;
   display: block;
   width: 38px;
   height: 38px;
@@ -3260,8 +3267,8 @@ fieldset[disabled] .btn {
 .btn.default:active,
 .btn-default.active,
 .btn.default.active,
-.open .dropdown-toggle.btn-default,
-.open .dropdown-toggle.btn.default {
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn.default {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
@@ -3270,8 +3277,8 @@ fieldset[disabled] .btn {
 .btn.default:active,
 .btn-default.active,
 .btn.default.active,
-.open .dropdown-toggle.btn-default,
-.open .dropdown-toggle.btn.default {
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn.default {
   background-image: none;
 }
 .btn-default.disabled,
@@ -3326,8 +3333,8 @@ fieldset[disabled] .btn.default.active {
 .btn.primary:active,
 .btn-primary.active,
 .btn.primary.active,
-.open .dropdown-toggle.btn-primary,
-.open .dropdown-toggle.btn.primary {
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn.primary {
   color: #fff;
   background-color: #3071a9;
   border-color: #285e8e;
@@ -3336,8 +3343,8 @@ fieldset[disabled] .btn.default.active {
 .btn.primary:active,
 .btn-primary.active,
 .btn.primary.active,
-.open .dropdown-toggle.btn-primary,
-.open .dropdown-toggle.btn.primary {
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn.primary {
   background-image: none;
 }
 .btn-primary.disabled,
@@ -3392,8 +3399,8 @@ fieldset[disabled] .btn.primary.active {
 .btn.success:active,
 .btn-success.active,
 .btn.success.active,
-.open .dropdown-toggle.btn-success,
-.open .dropdown-toggle.btn.success {
+.open > .dropdown-toggle.btn-success,
+.open > .dropdown-toggle.btn.success {
   color: #fff;
   background-color: #449d44;
   border-color: #398439;
@@ -3402,8 +3409,8 @@ fieldset[disabled] .btn.primary.active {
 .btn.success:active,
 .btn-success.active,
 .btn.success.active,
-.open .dropdown-toggle.btn-success,
-.open .dropdown-toggle.btn.success {
+.open > .dropdown-toggle.btn-success,
+.open > .dropdown-toggle.btn.success {
   background-image: none;
 }
 .btn-success.disabled,
@@ -3458,8 +3465,8 @@ fieldset[disabled] .btn.success.active {
 .btn.warning:active,
 .btn-warning.active,
 .btn.warning.active,
-.open .dropdown-toggle.btn-warning,
-.open .dropdown-toggle.btn.warning {
+.open > .dropdown-toggle.btn-warning,
+.open > .dropdown-toggle.btn.warning {
   color: #fff;
   background-color: #ec971f;
   border-color: #d58512;
@@ -3468,8 +3475,8 @@ fieldset[disabled] .btn.success.active {
 .btn.warning:active,
 .btn-warning.active,
 .btn.warning.active,
-.open .dropdown-toggle.btn-warning,
-.open .dropdown-toggle.btn.warning {
+.open > .dropdown-toggle.btn-warning,
+.open > .dropdown-toggle.btn.warning {
   background-image: none;
 }
 .btn-warning.disabled,
@@ -3524,8 +3531,8 @@ fieldset[disabled] .btn.warning.active {
 .btn.danger:active,
 .btn-danger.active,
 .btn.danger.active,
-.open .dropdown-toggle.btn-danger,
-.open .dropdown-toggle.btn.danger {
+.open > .dropdown-toggle.btn-danger,
+.open > .dropdown-toggle.btn.danger {
   color: #fff;
   background-color: #c9302c;
   border-color: #ac2925;
@@ -3534,8 +3541,8 @@ fieldset[disabled] .btn.warning.active {
 .btn.danger:active,
 .btn-danger.active,
 .btn.danger.active,
-.open .dropdown-toggle.btn-danger,
-.open .dropdown-toggle.btn.danger {
+.open > .dropdown-toggle.btn-danger,
+.open > .dropdown-toggle.btn.danger {
   background-image: none;
 }
 .btn-danger.disabled,
@@ -3590,8 +3597,8 @@ fieldset[disabled] .btn.danger.active {
 .btn.info:active,
 .btn-info.active,
 .btn.info.active,
-.open .dropdown-toggle.btn-info,
-.open .dropdown-toggle.btn.info {
+.open > .dropdown-toggle.btn-info,
+.open > .dropdown-toggle.btn.info {
   color: #fff;
   background-color: #31b0d5;
   border-color: #269abc;
@@ -3600,8 +3607,8 @@ fieldset[disabled] .btn.danger.active {
 .btn.info:active,
 .btn-info.active,
 .btn.info.active,
-.open .dropdown-toggle.btn-info,
-.open .dropdown-toggle.btn.info {
+.open > .dropdown-toggle.btn-info,
+.open > .dropdown-toggle.btn.info {
   background-image: none;
 }
 .btn-info.disabled,
@@ -3765,6 +3772,7 @@ input[type="button"].btn-block {
   margin: 2px 0 0;
   font-size: 14px;
   font-size: 1.4rem;
+  text-align: left;
   list-style: none;
   background-color: #fff;
   -webkit-background-clip: padding-box;
