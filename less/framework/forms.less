@@ -2,80 +2,120 @@
 // Forms
 // --------------------------------------------------
 
-// FORM RESET (nm v2.1.3)
 
-label,
-select,
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-input[type="radio"],
-input[type="checkbox"] {
-  cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others.
-}
-button,
-input,
-select,
-textarea {
-  font-family: inherit; // Correct font family not being inherited in all browsers (nm 2.1.3)
-  font-size: inherit; // Correct font size not being inherited in all browsers (nm 2.1.3)
-  line-height: inherit;
-  margin: 0; // Address margins set differently in Firefox 4+, Safari 5, and Chrome (nm 2.1.3)
-}
+// Form Reset (nm v3.0.1)
+// --------------------------------------------------
+
+// Known limitation: by default, Chrome and Safari on OS X allow very limited
+// styling of `select`, unless a `border` property is set.
+
+// 1. Correct color not being inherited. Known issue: affects color of disabled elements. (nm v3.0.1)
+// 2. Correct font properties not being inherited. (nm v3.0.1)
+// 3. Address margins set differently in Firefox 4+, Safari, and Chrome. (nm v3.0.1)
 button,
 input,
-select[multiple],
+optgroup,
+select,
 textarea {
-  background-image: none;
+  color: inherit; // 1
+  font: inherit; // 2
+  margin: 0; // 3
 }
-button,
-input {
-  line-height: normal; // FF3/4 have !important on line-height in UA stylesheet (nm 2.1.3)
+
+// Address `overflow` set to `hidden` in IE 8/9/10/11. (nm v3.0.1)
+button {
+  overflow: visible; 
 }
+
 // Address inconsistent `text-transform` inheritance for `button` and `select`.
 // All other form control elements do not inherit `text-transform` values.
 // Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
-// Correct `select` style inheritance in Firefox 4+ and Opera. (nm 2.1.3)
+// Correct `select` style inheritance in Firefox 4+ and Opera. (nm v3.0.1)
 button,
 select {
   text-transform: none;
 }
+
+// 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. (nm v3.0.1)
+// 2. Correct inability to style clickable `input` types in iOS. (nm v3.0.1)
+// 3. Improve usability and consistency of cursor style between image-type `input` and others. (nm v3.0.1)
 button,
-html input[type="button"], // Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls (nm 2.1.3)
+html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button; // Corrects inability to style clickable `input` types in iOS. (nm 2.1.3)
-  cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others. (nm 2.1.3)
+  -webkit-appearance: button; // 2
+  cursor: pointer; // 3
 }
+
+// Reset default cursor for disabled elements (nm v3.0.1)
 button[disabled],
 html input[disabled] {
-  cursor: default; // Re-set default cursor for disabled elements (nm 2.1.3)
+  cursor: default;
 }
+
+// Remove inner padding and border in Firefox 4+ (nm v3.0.1)
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+// Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet. (nm v3.0.1)
+input {
+  line-height: normal;
+}
+
+// It's recommended that you don't attempt to style these elements.
+// Firefox's implementation doesn't respect box-sizing, padding, or width.
+//
+// 1. Address box sizing set to `content-box` in IE 8/9/10.
+// 2. Remove excess padding in IE 8/9/10.
+
 input[type="checkbox"],
 input[type="radio"] {
-  .box-sizing(border-box); // Address box sizing set to `content-box` in IE 8/9/10 (nm 2.1.3)
-  padding: 0; // Remove excess padding in IE 8/9/10 (nm 2.1.3)
+  .box-sizing(border-box); // 1
+  padding: 0; // 2
   margin: 4px 0 0;
   margin-top: 1px \9; // IE8-9
   line-height: normal;
 }
+
+// Fix the cursor style for Chrome's increment/decrement buttons. For certain
+// `font-size` values of the `input`, it causes the cursor style of the
+// decrement button to change from `default` to `text`. (nm v3.0.1)
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+// 1. Address `appearance` set to `searchfield` in Safari and Chrome. (nm v3.0.1)
+
 input[type="search"] {
   .box-sizing(border-box); // Override content-box (* isn't specific enough)
-  -webkit-appearance: textfield; //Address 'appearance' set to 'searchfield' in Safari 5 and Chrome (nm 2.1.3)
+  -webkit-appearance: textfield; // 1
 }
+
+// Remove inner padding and search cancel button in Safari and Chrome on OS X.
+// Safari (but not Chrome) clips the cancel button when the search input has
+// padding (and `textfield` appearance). (nm v3.0.1)
+
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; //* Inner-padding issues in Safari 5 and Chrome on OS X (nm 2.1.3)
+  -webkit-appearance: none;
 }
-button::-moz-focus-inner,
-input::-moz-focus-inner { //Remove inner padding and border in Firefox 4+ (nm2.1.3)
-  padding: 0;
-  border: 0;
-}
+
+// 1. Remove default vertical scrollbar in IE 8/9/10/11. (nm v3.0.1)
+// 2. Readability and alignment in all browsers (nm v3.0.1)
 textarea {
-  overflow: auto; // Remove default vertical scrollbar in IE8/9 (nm 2.1.3)
-  vertical-align: top; // Readability and alignment in all browsers (nm 2.1.3)
+  overflow: auto; // 1
+  vertical-align: top; // 2
+}
+
+// Don't inherit the `font-weight` (applied by a rule above).
+// NOTE: the default cannot safely be changed in Chrome and Safari on OS X. (nm v3.0.1)
+optgroup {
+  font-weight: bold;
 }
 
 // Normalize non-controls
@@ -95,12 +135,12 @@ fieldset {
 legend {
   display: block;
   width: 100%;
-  padding: 0; // Remove padding so people aren't caught out if they zero out fieldsets (nm 2.1.3)
+  padding: 0; // Remove padding so people aren't caught out if they zero out fieldsets. (nm v3.0.1)
   margin-bottom: @line-height-computed;
   .font-size((@font-size-base * 1.5));
   line-height: inherit;
   color: @legend-color;
-  border: 0; // Correct `color` not being inherited in IE 8/9 (nm 2.1.3)
+  border: 0; // Correct `color` not being inherited in IE 8/9/10/11. (nm v3.0.1)
   border-bottom: 1px solid @legend-border-color;
 }
 
@@ -113,6 +153,7 @@ label {
 
 
 // Normalize form controls
+//
 // While most of our form styles require extra classes, some basic normalization
 // is required to ensure optimum display with or without those classes to better
 // address browser inconsistencies.
@@ -134,28 +175,11 @@ select[size] {
   height: auto;
 }
 
-// Fix optgroup Firefox bug per https://github.com/twbs/bootstrap/issues/7611
-select optgroup {
-  font-size: inherit;
-  font-style: inherit;
-  font-family: inherit;
-}
-
 // Focus for file, radio, and checkbox
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   .tab-focus();
-}
-
-// Fix for Chrome number input
-// Setting certain font-sizes causes the `I` bar to appear on hover of the
-// decrement button. See https://github.com/twbs/bootstrap/issues/8350.
-input[type="number"] {
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    height: auto;
-  }
 }
 
 // Adjust output element
@@ -166,8 +190,6 @@ output {
   line-height: @line-height-base;
   color: @input-color;
 }
-
-
 
 
 // Common form controls
@@ -193,11 +215,6 @@ output {
 // input[type="color"]
 
 .form-control {
-  // Ensure that the input is always above the *appended* addon button for
-  // proper border colors.
-  position: relative;
-  z-index: 2;
-
   display: block;
   width: 100%;
   height: @input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
@@ -265,13 +282,13 @@ input[type="datetime-local"],
 input[type="month"] {
   line-height: @input-height-base;
 
- // IE8+ misaligns the text within date inputs, so we reset
+  // IE8+ misaligns the text within date inputs, so we reset
   line-height: @line-height-base ~"\0";
 
-  &.input-sm {
+  &.input-sm{
     line-height: @input-height-small;
   }
-  &.input-lg {
+  &.input-lg{
     line-height: @input-height-large;
   }
 }

@@ -1,10 +1,12 @@
 // Reset.less
 // Adapted from Normalize.css http://github.com/necolas/normalize.css
-// normalize version: 2.1.3 | MIT License | git.io/normalize */
+// normalize version: 3.0.1 | MIT License | git.io/normalize */
 // ------------------------------------------------------------------------
 
 // HTML5 display definitions 
-// Corrects `block` display not defined in IE 6-9 and FF3.
+// Correct `block` display not defined for any HTML5 element in IE 8/9.
+// Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+// Correct `block` display not defined for `main` in IE 11.
 // -------------------------------------------------------
 
 article,
@@ -22,16 +24,19 @@ summary {
   display: block;
 }
 
-// Display block in IE8-9
-// ----------------------
+// Correct `inline-block` display not defined in IE 8/9.
+// Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+// -------------------------------------------------------------------------
 
 audio,
 canvas,
+progress,
 video {
-    display: inline-block;
+  display: inline-block; // 1
+  vertical-align: baseline; // 2
 }
 
-// Prevents modern browsers from displaying 'audio' without controls
+// Prevent modern browsers from displaying `audio` without controls.
 // Remove excess height in iOS 5 devices.
 // -----------------------------------------------------------------
 
@@ -40,15 +45,17 @@ audio:not([controls]) {
     height: 0;
 }
 
-// Addresses styling for `hidden` attribute not present in IE 8/9.
-// Hide the `template` element in IE, Safari, and Firefox < 22.
-// ----------------------------------------------------------------
+// Address `[hidden]` styling not present in IE 8/9/10.
+// Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+// -------------------------------------------------------------------
 
 [hidden],
 template {
     display: none;
 }
 
+// Correct overflow not hidden in IE 9/10/11.
+// ------------------------------------------
 svg:not(:root) {
-    overflow: hidden; // Corrects overflow displayed oddly in IE 9.
+    overflow: hidden;
 }
