@@ -2077,7 +2077,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </div>
 {% endhighlight %}
 
-    <h4>Inline checkboxes</h4>
+    <h4>Inline checkboxes and radios</h4>
     <p>Use <code>.checkbox-inline</code> or <code>.radio-inline</code> class to a series of checkboxes or radios for controls appear on the same line.</p>
     <div class="bs-example">
       <form role="form">
@@ -2091,6 +2091,18 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
           <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
         </label>
       </form>
+      <br />
+      <form role="form">
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+        </label>
+      </form>
     </div><!-- /.bs-example -->
 {% highlight html %}
 <label class="checkbox-inline">
@@ -2101,6 +2113,15 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </label>
 <label class="checkbox-inline">
   <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
 </label>
 {% endhighlight %}
 
