@@ -1,89 +1,89 @@
-/*!
- * preloader.css
- * Fun preloaders made for DFM by Travis
- * To use a preloader, name your DIV class "preloader" for a basic bar animation
- * or name your DIV class "preloader-circles" for a pulsing circular animation
- */
+// Preloaders made for DFM by Travis
+//
+// To use a preloader, name your DIV class "preloader" for a basic bar animation
+// or name your DIV class "preloader-circles" for a pulsing circular animation
+// --------------------------------------------------
 
-/* Preloader width/height (note height of default preloader stays constant) */
-@preloader-width: 200px;
-@preloader-height: 200px;
+// notes for travis:
+// 1) write in Less
+// 2) double line comment only so they don't get generated in complied file.'
+// 3) look for variables that can be reused or new variable in file
+// 4) two spaces, not four
+// 5) CSS order of operations
+// 6) Preloader itself not very Bootstrapish
+// 7) Circles not documented
+// 8) Documentation doesn't follow style
+// 9) Redundant code in this file
+// 10) Fallback to IE should be in CSS, not the markup
 
-/* Default prelaoder animation */
+
+// Default prelaoder animation
 .preloader {
-    position: relative;
-    color: #3b567c;
-    font-family: sans-serif;
-    font-size: 14px;
-    line-height: 80px;
-    text-align: center;
-    text-transform: uppercase;
-    height: 20px;
-    width: @preloader-width;
-    margin-top: 10px;
-    margin-left: 20px;
-    border-radius: 20px;
-    background-image: -webkit-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
-    background-image: -moz-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
-    background-image: -o-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
-    background-image: linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
-    background-color: #d3d3d3;
-    background-size: 50px 50px;
-    border: 1px solid #3b567c;
-    border-bottom-color: #000000;
-    -webkit-box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
-    -webkit-animation: move 2s linear infinite;
-    -moz-animation: move 2s linear infinite;
-    -ms-animation: move 2s linear infinite;
-    animation: move 2s linear infinite;
+  position: relative;
+  width: @preloader-width;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: @preloader-color;
+  font-family: @font-family-sans-serif;
+  font-size: @font-size-base;
+  line-height: 80px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 20px;
+  background-image: -webkit-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
+  background-image: -moz-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
+  background-image: -o-linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
+  background-image: linear-gradient(-45deg, #3b567c 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, #3b567c 50%, #3b567c 75%, rgba(255, 154, 26, 0) 75%);
+  background-color: #d3d3d3;
+  background-size: 50px 50px;
+  border: 1px solid #3b567c;
+  box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
+  animation: move 2s linear infinite;
 }
 .preloader::before {
-    position: relative;
-    top: 10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background-color: #000;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
-    z-index: -1;
+  position: relative;
+  top: 10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  z-index: -1;
 }
 @-webkit-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+  0%   { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
 }
 @-moz-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+  0%   { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
 }
 @-ms-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+  0%   { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
 }
 @-webkit-keyframes move {
-    0%   { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+  0%   { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
 }
 /* Preloader-circles animation */
 .preloader-circles {
-  color: #3b567c;
-  font-family: sans-serif;
-  font-size: 14px;
+  color: @preloader-color;
+  font-family: @font-family-sans-serif;
+  font-size: @font-size-base;
   width: @preloader-width;
   height: @preloader-height;
   line-height: @preloader-height;
   position: relative;
-  box-sizing: border-box;
   text-align: center;
   z-index: 0;
 }
 .preloader-circles:before,
 .preloader:after {
   opacity: 0;
-  box-sizing: border-box;
   content: "\0020";
   position: absolute;
   top: 0;
@@ -91,8 +91,8 @@
   width: 100%;
   height: 100%;
   border-radius: 100px;
-  border: 5px solid #ccc;
-  box-shadow: 0 0 50px #ccc, inset 0 0 50px #ccc;
+  border: 5px solid @border-color;
+  box-shadow: 0 0 50px @border-color, inset 0 0 50px #ccc;
 }
 .preloader-circles:after {
   z-index: 1;
@@ -108,40 +108,40 @@
 }
 @-webkit-keyframes gogoloader {
   0% {
-    -webkit-transform: scale(0);
-    opacity: 0;
+  -webkit-transform: scale(0);
+  opacity: 0;
   }
   50% {
-    opacity: 1;
+  opacity: 1;
   }
   100% {
-    -webkit-transform: scale(1);
-    opacity: 0;
+  -webkit-transform: scale(1);
+  opacity: 0;
   }
 }
 @-o-keyframes gogoloader {
   0% {
-    -o-transform: scale(0);
-    opacity: 0;
+  -o-transform: scale(0);
+  opacity: 0;
   }
   50% {
-    opacity: 1;
+  opacity: 1;
   }
   100% {
-    -o-transform: scale(1);
-    opacity: 0;
+  -o-transform: scale(1);
+  opacity: 0;
   }
 }
 @keyframes gogoloader {
   0% {
-    transform: scale(0);
-    opacity: 0;
+  transform: scale(0);
+  opacity: 0;
   }
   50% {
-    opacity: 1;
+  opacity: 1;
   }
   100% {
-    transform: scale(1);
-    opacity: 0;
+  transform: scale(1);
+  opacity: 0;
   }
 }
