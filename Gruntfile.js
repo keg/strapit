@@ -65,17 +65,6 @@ module.exports = function (grunt) {
       }
     },
 
-    csslint: {
-      options: {
-        csslintrc: 'less/.csslintrc'
-      },
-      src: [
-        'dist/css/strapit.css',
-        'docs/assets/css/docs.css',
-        'docs/examples/**/*.css'
-      ]
-    },
-
     concat: {
       options: {
         banner: '<%= banner %>\n<%= jqueryCheck %>',
@@ -111,7 +100,6 @@ module.exports = function (grunt) {
       bootstrap: {
         options: {
           banner: '<%= banner %>\n',
-          report: 'min'
         },
         src: '<%= concat.bootstrap.dest %>',
         dest: 'dist/js/strapit.min.js'
@@ -140,6 +128,14 @@ module.exports = function (grunt) {
         files: {
           'dist/css/<%= pkg.name %>.css': 'less/strapit.less'
         }
+      },
+      minify: {
+        options: {
+          cleancss: true
+        },
+        files: {
+          'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css'
+        }
       }
     },
 
@@ -164,13 +160,31 @@ module.exports = function (grunt) {
       }
     },
 
+    csslint: {
+      options: {
+        csslintrc: 'less/.csslintrc'
+      },
+      src: [
+        'dist/css/bootstrap.css',
+      ],
+      examples: [
+        'docs/examples/**/*.css'
+      ],
+      docs: {
+        options: {
+          ids: false,
+          'overqualified-elements': false
+        },
+        src: 'docs/assets/css/docs.css'
+      }
+    },
+
     cssmin: {
       compress: {
         options: {
+          compatibility: 'ie8',
           keepSpecialComments: '*',
           noAdvanced: true, // turn advanced optimizations off until the issue is fixed in clean-css
-          report: 'min',
-          selectorsMergeMode: 'ie8'
         },
         src: [
           'docs/assets/css/docs.css',
@@ -212,16 +226,21 @@ module.exports = function (grunt) {
         config: 'less/.csscomb.json'
       },
       dist: {
-        files: {
-          'dist/css/<%= pkg.name %>.css': 'dist/css/<%= pkg.name %>.css',
-          'docs/assets/css/docs.css': 'docs/assets/css/docs.css'
-        }
+        expand: true,
+        cwd: 'dist/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/css/'
       },
       examples: {
         expand: true,
         cwd: 'docs/examples/',
         src: ['**/*.css'],
         dest: 'docs/examples/'
+      },
+      docs: {
+        files: {
+          'docs/assets/css/docs.css': 'docs/assets/css/docs.css'
+        }
       }
     },
 
@@ -326,10 +345,10 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-js', ['concat', 'uglify']);
 
   // CSS distribution task.
-  grunt.registerTask('dist-css', ['less', 'autoprefixer', 'usebanner', 'csslint', 'csscomb', 'cssmin']);
+  grunt.registerTask('dist-css', ['less:compileCore', 'autoprefixer', 'usebanner', 'csscomb', 'less:minify', 'cssmin']);
 
   // Docs distribution task.
-  grunt.registerTask('dist-docs', ['copy:docs']);
+  grunt.registerTask('dist-docs', 'copy:docs');
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean', 'dist-css', 'copy:fonts', 'copy:webicons', 'dist-js', 'dist-docs']);

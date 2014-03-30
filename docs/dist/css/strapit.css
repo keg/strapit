@@ -24,8 +24,10 @@ summary {
 }
 audio,
 canvas,
+progress,
 video {
   display: inline-block;
+  vertical-align: baseline;
 }
 audio:not([controls]) {
   display: none;
@@ -180,11 +182,6 @@ embed {
 figure {
   margin: 0;
 }
-/* Fix Google Maps canvas
- *
- * Wrap your Google Maps embed in a `.google-map-canvas` to reset Strapit's
- * global `box-sizing` changes.
- */
 .google-map-canvas,
 .google-map-canvas * {
   max-width: none !important;
@@ -201,9 +198,6 @@ figure {
 }
 hr {
   height: 0;
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
   margin-top: 22px;
   margin-bottom: 22px;
   border: 0;
@@ -658,7 +652,7 @@ sub {
 mark,
 .mark {
   padding: .2em;
-  background-color: #fcf8e3;
+  background: #fcf8e3;
 }
 abbr[title],
 abbr[data-original-title] {
@@ -668,9 +662,6 @@ abbr[data-original-title] {
 .initialism {
   font-size: 90%;
   text-transform: uppercase;
-}
-q {
-  quotes: "\201C" "\201D" "\2018" "\2019";
 }
 address {
   margin-bottom: 22px;
@@ -688,8 +679,7 @@ cite {
 }
 samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  font-size: 10px;
-  font-size: 1rem;
+  font-size: 1em;
 }
 .clearfix:before,
 .clearfix:after,
@@ -2304,6 +2294,10 @@ th.hidden-touch {
 code,
 pre {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 1em;
+}
+kbd {
+  font-size: 1em;
 }
 code {
   padding: 2px 4px;
@@ -2329,13 +2323,13 @@ pre {
   display: block;
   padding: 10.5px;
   margin: 0 0 11px;
+  overflow: auto;
   font-size: 13px;
   font-size: 1.3rem;
   line-height: 1.618;
   color: #555;
   word-break: break-all;
   word-wrap: break-word;
-  white-space: pre-wrap;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -2474,6 +2468,7 @@ table th.col {
 .table-hover > tbody > tr > td.active:hover,
 .table-hover > tbody > tr > th.active:hover,
 .table-hover > tbody > tr.active:hover > td,
+.table-hover > tbody > tr:hover > .active,
 .table-hover > tbody > tr.active:hover > th {
   background-color: #bfbfbf;
 }
@@ -2494,6 +2489,7 @@ table th.col {
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr:hover > .success,
 .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6;
 }
@@ -2514,6 +2510,7 @@ table th.col {
 .table-hover > tbody > tr > td.warning:hover,
 .table-hover > tbody > tr > th.warning:hover,
 .table-hover > tbody > tr.warning:hover > td,
+.table-hover > tbody > tr:hover > .warning,
 .table-hover > tbody > tr.warning:hover > th {
   background-color: #faf2cc;
 }
@@ -2534,6 +2531,7 @@ table th.col {
 .table-hover > tbody > tr > td.danger:hover,
 .table-hover > tbody > tr > th.danger:hover,
 .table-hover > tbody > tr.danger:hover > td,
+.table-hover > tbody > tr:hover > .danger,
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
@@ -2554,6 +2552,7 @@ table th.col {
 .table-hover > tbody > tr > td.info:hover,
 .table-hover > tbody > tr > th.info:hover,
 .table-hover > tbody > tr.info:hover > td,
+.table-hover > tbody > tr:hover > .info,
 .table-hover > tbody > tr.info:hover > th {
   background-color: #c4e3f3;
 }
@@ -2720,34 +2719,17 @@ tbody.collapse.in {
        -o-transition: height .35s ease-in;
           transition: height .35s ease-in;
 }
-label,
-select,
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-input[type="radio"],
-input[type="checkbox"] {
-  cursor: pointer;
-}
 button,
 input,
+optgroup,
 select,
 textarea {
   margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+  font: inherit;
+  color: inherit;
 }
-button,
-input,
-select[multiple],
-textarea {
-  background-image: none;
-}
-button,
-input {
-  line-height: normal;
+button {
+  overflow: visible;
 }
 button,
 select {
@@ -2764,6 +2746,14 @@ button[disabled],
 html input[disabled] {
   cursor: default;
 }
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+input {
+  line-height: normal;
+}
 input[type="checkbox"],
 input[type="radio"] {
   -webkit-box-sizing: border-box;
@@ -2773,6 +2763,10 @@ input[type="radio"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   line-height: normal;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2784,14 +2778,12 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
 textarea {
   overflow: auto;
   vertical-align: top;
+}
+optgroup {
+  font-weight: bold;
 }
 fieldset {
   min-width: 0;
@@ -2813,6 +2805,7 @@ legend {
 }
 label {
   display: inline-block;
+  max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -2827,21 +2820,12 @@ select[multiple],
 select[size] {
   height: auto;
 }
-select optgroup {
-  font-family: inherit;
-  font-size: inherit;
-  font-style: inherit;
-}
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
-}
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  height: auto;
 }
 output {
   display: block;
@@ -2852,8 +2836,6 @@ output {
   color: #808080;
 }
 .form-control {
-  position: relative;
-  z-index: 2;
   display: block;
   width: 100%;
   height: 38px;
@@ -3016,6 +2998,7 @@ select[multiple].input-lg {
   position: absolute;
   top: 27px;
   right: 0;
+  z-index: 2;
   display: block;
   width: 38px;
   height: 38px;
@@ -3260,8 +3243,8 @@ fieldset[disabled] .btn {
 .btn.default:active,
 .btn-default.active,
 .btn.default.active,
-.open .dropdown-toggle.btn-default,
-.open .dropdown-toggle.btn.default {
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn.default {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
@@ -3270,8 +3253,8 @@ fieldset[disabled] .btn {
 .btn.default:active,
 .btn-default.active,
 .btn.default.active,
-.open .dropdown-toggle.btn-default,
-.open .dropdown-toggle.btn.default {
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn.default {
   background-image: none;
 }
 .btn-default.disabled,
@@ -3326,8 +3309,8 @@ fieldset[disabled] .btn.default.active {
 .btn.primary:active,
 .btn-primary.active,
 .btn.primary.active,
-.open .dropdown-toggle.btn-primary,
-.open .dropdown-toggle.btn.primary {
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn.primary {
   color: #fff;
   background-color: #3071a9;
   border-color: #285e8e;
@@ -3336,8 +3319,8 @@ fieldset[disabled] .btn.default.active {
 .btn.primary:active,
 .btn-primary.active,
 .btn.primary.active,
-.open .dropdown-toggle.btn-primary,
-.open .dropdown-toggle.btn.primary {
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn.primary {
   background-image: none;
 }
 .btn-primary.disabled,
@@ -3392,8 +3375,8 @@ fieldset[disabled] .btn.primary.active {
 .btn.success:active,
 .btn-success.active,
 .btn.success.active,
-.open .dropdown-toggle.btn-success,
-.open .dropdown-toggle.btn.success {
+.open > .dropdown-toggle.btn-success,
+.open > .dropdown-toggle.btn.success {
   color: #fff;
   background-color: #449d44;
   border-color: #398439;
@@ -3402,8 +3385,8 @@ fieldset[disabled] .btn.primary.active {
 .btn.success:active,
 .btn-success.active,
 .btn.success.active,
-.open .dropdown-toggle.btn-success,
-.open .dropdown-toggle.btn.success {
+.open > .dropdown-toggle.btn-success,
+.open > .dropdown-toggle.btn.success {
   background-image: none;
 }
 .btn-success.disabled,
@@ -3458,8 +3441,8 @@ fieldset[disabled] .btn.success.active {
 .btn.warning:active,
 .btn-warning.active,
 .btn.warning.active,
-.open .dropdown-toggle.btn-warning,
-.open .dropdown-toggle.btn.warning {
+.open > .dropdown-toggle.btn-warning,
+.open > .dropdown-toggle.btn.warning {
   color: #fff;
   background-color: #ec971f;
   border-color: #d58512;
@@ -3468,8 +3451,8 @@ fieldset[disabled] .btn.success.active {
 .btn.warning:active,
 .btn-warning.active,
 .btn.warning.active,
-.open .dropdown-toggle.btn-warning,
-.open .dropdown-toggle.btn.warning {
+.open > .dropdown-toggle.btn-warning,
+.open > .dropdown-toggle.btn.warning {
   background-image: none;
 }
 .btn-warning.disabled,
@@ -3524,8 +3507,8 @@ fieldset[disabled] .btn.warning.active {
 .btn.danger:active,
 .btn-danger.active,
 .btn.danger.active,
-.open .dropdown-toggle.btn-danger,
-.open .dropdown-toggle.btn.danger {
+.open > .dropdown-toggle.btn-danger,
+.open > .dropdown-toggle.btn.danger {
   color: #fff;
   background-color: #c9302c;
   border-color: #ac2925;
@@ -3534,8 +3517,8 @@ fieldset[disabled] .btn.warning.active {
 .btn.danger:active,
 .btn-danger.active,
 .btn.danger.active,
-.open .dropdown-toggle.btn-danger,
-.open .dropdown-toggle.btn.danger {
+.open > .dropdown-toggle.btn-danger,
+.open > .dropdown-toggle.btn.danger {
   background-image: none;
 }
 .btn-danger.disabled,
@@ -3590,8 +3573,8 @@ fieldset[disabled] .btn.danger.active {
 .btn.info:active,
 .btn-info.active,
 .btn.info.active,
-.open .dropdown-toggle.btn-info,
-.open .dropdown-toggle.btn.info {
+.open > .dropdown-toggle.btn-info,
+.open > .dropdown-toggle.btn.info {
   color: #fff;
   background-color: #31b0d5;
   border-color: #269abc;
@@ -3600,8 +3583,8 @@ fieldset[disabled] .btn.danger.active {
 .btn.info:active,
 .btn-info.active,
 .btn.info.active,
-.open .dropdown-toggle.btn-info,
-.open .dropdown-toggle.btn.info {
+.open > .dropdown-toggle.btn-info,
+.open > .dropdown-toggle.btn.info {
   background-image: none;
 }
 .btn-info.disabled,
@@ -3765,6 +3748,7 @@ input[type="button"].btn-block {
   margin: 2px 0 0;
   font-size: 14px;
   font-size: 1.4rem;
+  text-align: left;
   list-style: none;
   background-color: #fff;
   -webkit-background-clip: padding-box;
@@ -8171,7 +8155,7 @@ button.close {
     background-position: 50px 50px;
   }
 }
-@-ms-keyframes move {
+@-o-keyframes move {
   0% {
     background-position: 0 0;
   }
@@ -8179,7 +8163,7 @@ button.close {
     background-position: 50px 50px;
   }
 }
-@-webkit-keyframes move {
+@keyframes move {
   0% {
     background-position: 0 0;
   }
@@ -8229,6 +8213,7 @@ button.close {
   0% {
     opacity: 0;
     -webkit-transform: scale(0);
+            transform: scale(0);
   }
   50% {
     opacity: 1;
@@ -8236,12 +8221,14 @@ button.close {
   100% {
     opacity: 0;
     -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 @-o-keyframes gogoloader {
   0% {
     opacity: 0;
     -o-transform: scale(0);
+       transform: scale(0);
   }
   50% {
     opacity: 1;
@@ -8249,6 +8236,7 @@ button.close {
   100% {
     opacity: 0;
     -o-transform: scale(1);
+       transform: scale(1);
   }
 }
 @keyframes gogoloader {
