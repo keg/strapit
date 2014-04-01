@@ -250,6 +250,11 @@ module.exports = function (grunt) {
         src: 'fonts/*',
         dest: 'dist/'
       },
+      custom: {
+        expand: true,
+        src: 'img/custom/*',
+        dest: 'dist/'
+      },
       webicons: {
         expand: true,
         src: 'img/webicons/*',
@@ -263,6 +268,7 @@ module.exports = function (grunt) {
           '{css,js}/*.min.*',
           'css/*.map',
           'fonts/*',
+          'img/custom/*',
           'img/webicons/*'
         ],
         dest: 'docs/dist'
