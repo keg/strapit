@@ -8145,6 +8145,15 @@ button.close {
        -o-animation: gogoloader 2s infinite;
           animation: gogoloader 2s infinite;
 }
+.no-cssanimations .preloader {
+  background: transparent url('../img/custom/preloader_ie.gif') no-repeat 50% 20%;
+}
+.no-cssanimations .preloader:after,
+.no-cssanimations .preloader:before {
+  -webkit-animation: none;
+       -o-animation: none;
+          animation: none;
+}
 @-webkit-keyframes gogoloader {
   0% {
     opacity: 0;

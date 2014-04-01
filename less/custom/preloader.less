@@ -35,6 +35,14 @@
     animation: gogoloader 2s infinite;
   }
 }
+// Fallback for old browsers without css animations 
+.no-cssanimations .preloader {
+  background: transparent url('@{custom-image-path}preloader_ie.gif') no-repeat 50% 20%;
+  &:after,
+  &:before {
+    animation: none;
+  }
+}
 @keyframes gogoloader {
   0% {
     transform: scale(0);
