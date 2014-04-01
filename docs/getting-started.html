@@ -48,8 +48,8 @@ strapit/
 │   ├── strapit.css
 │   ├── strapit.min.css
 ├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
+│   ├── strapit.js
+│   └── strapit.min.js
 └── fonts/
 │   ├── glyphicons-halflings-regular.eot
 │   ├── glyphicons-halflings-regular.svg
@@ -147,12 +147,11 @@ less/
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/strapit.min.js"></script>
   </body>
 </html>
 {% endhighlight %}
   </div>
-
 
 
   <!-- Examples
@@ -160,7 +159,7 @@ less/
   <div class="bs-docs-section">
     <h1 id="examples" class="page-header">Examples</h1>
     <p class="lead">Build on the basic template above with Strapit's many components. Check out some of the more advanced tips for how to customize and build on top of them.</p>
-
+    <h3 id="examples-framework">Using the framework</h3>
     <div class="row bs-examples">
       <div class="col sm-6 lg-4">
         <a class="thumbnail" href="../examples/starter-template/">
@@ -177,6 +176,20 @@ less/
         <p>Multiple examples of grid layouts with all four tiers, nesting, and more.</p>
       </div>
       <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/static-grid/">
+          <img src="../examples/screenshots/static-grid.jpg" alt="">
+        </a>
+        <h4>Static grid</h4>
+        <p>A second option for non-responsive Strapit, if you are using Less to make your files.</p>
+      </div>
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/non-responsive/">
+          <img src="../examples/screenshots/non-responsive.jpg" alt="">
+        </a>
+        <h4>Non-responsive Strapit</h4>
+        <p>Easily disable the responsiveness of Strapit <a href="../getting-started/#disable-responsive">per our docs</a>.</p>
+      </div>
+      <div class="col sm-6 lg-4">
         <a class="thumbnail" href="../examples/jumbotron/">
           <img src="../examples/screenshots/jumbotron.jpg" alt="">
         </a>
@@ -190,6 +203,9 @@ less/
         <h4>Narrow jumbotron</h4>
         <p>Build a more custom page by narrowing the default container and jumbotron.</p>
       </div>
+    </div>
+    <h3 id="examples-navigation">Navigation</h3>
+    <div class="row bs-examples">
       <div class="col sm-6 lg-4">
         <a class="thumbnail" href="../examples/navbar/">
           <img src="../examples/screenshots/navbar.jpg" alt="">
@@ -210,6 +226,65 @@ less/
         </a>
         <h4>Fixed navbar</h4>
         <p>Super basic template with a fixed top navbar along with some additional content.</p>
+      </div>
+      <div class="col sm-6 md-4">
+        <a class="thumbnail" href="../examples/sidenav/">
+          <img src="../examples/screenshots/offcanvas-sidenav.jpg" alt="">
+        </a>
+        <h4>Offcanvas sidenav</h4>
+        <p>Build a toggleable off-canvas navigation menu for use with Strapit.</p>
+      </div>
+      <div class="col sm-6 md-4">
+        <a class="thumbnail" href="../examples/sidenav-push/">
+          <img src="../examples/screenshots/offcanvas-push.jpg" alt="">
+        </a>
+        <h4>Offcanvas push</h4>
+        <p>A sidenav the pushes the content to the side.</p>
+      </div>
+      <div class="col sm-6 md-4">
+        <a class="thumbnail" href="../examples/sidenav-reveal/">
+          <img src="../examples/screenshots/offcanvas-reveal.jpg" alt="">
+        </a>
+        <h4>Offcanvas reveal</h4>
+        <p>Content reveals a hidden menu underneath.</p>
+      </div>
+    </div>
+    <h3 id="examples-components">Custom components</h3>
+    <div class="row bs-examples">
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/blog/">
+          <img src="../examples/screenshots/blog.jpg" alt="">
+        </a>
+        <h4>Blog</h4>
+        <p>Simple two-column blog layout with custom navigation, header, and type.</p>
+      </div>
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/carousel/">
+          <img src="../examples/screenshots/carousel.jpg" alt="">
+        </a>
+        <h4>Carousel</h4>
+        <p>Customize the navbar and carousel, then add some new components.</p>
+      </div>
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/cover/">
+          <img src="../examples/screenshots/cover.jpg" alt="">
+        </a>
+        <h4>Cover</h4>
+        <p>A one-page template for building simple and beautiful home pages.</p>
+      </div>
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/dashboard/">
+          <img src="../examples/screenshots/dashboard.jpg" alt="">
+        </a>
+        <h4>Dashboard</h4>
+        <p>Basic structure for a admin dashboard with fixed sidebar and navbar.</p>
+      </div>
+      <div class="col sm-6 lg-4">
+        <a class="thumbnail" href="../examples/justified-nav/">
+          <img src="../examples/screenshots/justified-nav.jpg" alt="">
+        </a>
+        <h4>Justified nav</h4>
+        <p>Create a custom navbar with justified links. Heads up! <a href="../components/#nav-justified">Not too WebKit friendly.</a></p>
       </div>
       <div class="col sm-6 lg-4">
         <a class="thumbnail" href="../examples/signin/">
@@ -232,63 +307,6 @@ less/
         <h4>Sticky footer with navbar</h4>
         <p>Attach a footer to the bottom of the viewport with a fixed navbar at the top.</p>
       </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/justified-nav/">
-          <img src="../examples/screenshots/justified-nav.jpg" alt="">
-        </a>
-        <h4>Justified nav</h4>
-        <p>Create a custom navbar with justified links. Heads up! <a href="../components/#nav-justified">Not too WebKit friendly.</a></p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/offcanvas/">
-          <img src="../examples/screenshots/offcanvas.jpg" alt="">
-        </a>
-        <h4>Offcanvas</h4>
-        <p>Build a toggleable off-canvas navigation menu for use with Strapit.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/carousel/">
-          <img src="../examples/screenshots/carousel.jpg" alt="">
-        </a>
-        <h4>Carousel</h4>
-        <p>Customize the navbar and carousel, then add some new components.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/cover/">
-          <img src="../examples/screenshots/cover.jpg" alt="">
-        </a>
-        <h4>Cover</h4>
-        <p>A one-page template for building simple and beautiful home pages.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/blog/">
-          <img src="../examples/screenshots/blog.jpg" alt="">
-        </a>
-        <h4>Blog</h4>
-        <p>Simple two-column blog layout with custom navigation, header, and type.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/dashboard/">
-          <img src="../examples/screenshots/dashboard.jpg" alt="">
-        </a>
-        <h4>Dashboard</h4>
-        <p>Basic structure for a admin dashboard with fixed sidebar and navbar.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/non-responsive/">
-          <img src="../examples/screenshots/non-responsive.jpg" alt="">
-        </a>
-        <h4>Non-responsive Strapit</h4>
-        <p>Easily disable the responsiveness of Strapit <a href="../getting-started/#disable-responsive">per our docs</a>.</p>
-      </div>
-      <div class="col sm-6 lg-4">
-        <a class="thumbnail" href="../examples/theme/">
-          <img src="../examples/screenshots/theme.jpg" alt="">
-        </a>
-        <h4>Strapit theme</h4>
-        <p>Load the optional Strapit theme for a visually enhanced experience.</p>
-      </div>
-    </div>
 
   </div>
 
@@ -314,6 +332,10 @@ less/
     <p>
       <a href="../examples/non-responsive/" class="btn primary">View non-responsive example</a>
     </p>
+    <div class="callout info">
+      <h4>A second option for those who are using Less</h4>
+      <p>The above option for a static site works for those using the pre-complied Strapit. However, if you are using Less files to generate your CSS, a better option is to create a static grid without keeping the heavy overhead of the fluid grid system. Read about <a href="../css/#grid-static">the static-grid option</a> and <a href="../examples/static-grid/">view the example</a> for more details.</p>
+    </div>
   </div>
 
 
@@ -374,6 +396,7 @@ less/
       </table>
     </div>
     <p>Unofficially, Strapit should look and behave well enough in Chromium and Chrome for Linux, Firefox for Linux, and Internet Explorer 7, though they are not officially supported.</p>
+    <p>For a list of some of the browser bugs that Strapit has to grapple with, see this <a href="../browser-bugs/">Wall of browser bugs</a>.</p>
 
     <h3 id="support-ie8-ie9">Internet Explorer 8 and 9</h3>
     <p>Internet Explorer 8 and 9 are also supported, however, please be aware that some CSS3 properties and HTML5 elements are not fully supported by these browsers. In addition, <strong>Internet Explorer 8 requires the use of <a href="https://github.com/scottjehl/Respond">Respond.js</a> to enable media query support.</strong></p>
@@ -406,8 +429,6 @@ less/
             <th scope="row"><code>transition</code></th>
             <td colspan="2" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Not supported</td>
           </tr>
-        </tbody>
-        <tbody>
           <tr>
             <th scope="row"><code>placeholder</code></th>
             <td colspan="2" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Not supported</td>
@@ -468,7 +489,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     <p>As a heads up, we include this in the Strapit docs as an example.</p>
 
     <h3 id="support-safari-percentages">Safari percent rounding</h3>
-    <p>As of Safari v6.1 for OS X and Safari for iOS v7.0.1, Safari's rendering engine has some trouble with the number of decimal places used in our <code>.col-*-1</code> grid classes. So if you have 12 individual grid columns, you'll notice that they come up short compared to other rows of columns. We can't do much here (<a href="https://github.com/twbs/bootstrap/issues/9282">see #9282</a>) but you do have some options:</p>
+    <p>As of Safari v7.0.1 for OS X and Safari for iOS v7.0.1, Safari's rendering engine has some trouble with the number of decimal places used in our <code>.col-*-1</code> grid classes. So if you have 12 individual grid columns, you'll notice that they come up short compared to other rows of columns. We can't do much here (<a href="https://github.com/twbs/bootstrap/issues/9282">see #9282</a>) but you do have some options:</p>
     <ul>
       <li>Add <code>.pull-right</code> to your last grid column to get the hard-right alignment</li>
       <li>Tweak your percentages manually to get the perfect rounding for Safari (more difficult than the first option)</li>
@@ -503,11 +524,13 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     <p>On <code>&lt;select&gt;</code> elements, the Android stock browser will not display the side controls if there is a <code>border-radius</code> and/or <code>border</code> applied. Use the snippet of code below to remove the offending CSS and render the <code>&lt;select&gt;</code> as an unstyled element on the Android stock browser. The user agent sniffing avoids interference with Chrome, Safari, and Mozilla browsers.</p>
 {% highlight html %}
 <script>
-var nua = navigator.userAgent;
-var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1);
-if(isAndroid) {
-  $('select.form-control').removeClass('form-control').css('width', '100%');
-}
+$(function () {
+  var nua = navigator.userAgent
+  var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+  if (isAndroid) {
+    $('select.form-control').removeClass('form-control').css('width', '100%')
+  }
+})
 </script>
 {% endhighlight %}
     <p>Want to see an example? <a href="http://jsbin.com/OyaqoDO/2">Check out this JS Bin demo.</a></p>
@@ -579,7 +602,7 @@ if(isAndroid) {
     <p>If your navigation contains many links and comes before the main content in the DOM, add a <code>Skip to content</code> link immediately after your opening <code>&lt;body&gt;</code> tag. <a href="http://a11yproject.com/posts/skip-nav-links/">(read why)</a></p>
 {% highlight html %}
 <body>
-  <a href="#content" class="sr-only">Skip to content</a>
+  <a href="#content" class="sr-only focusable">Skip to content</a>
   <div class="container" id="content">
     The main page content.
   </div>

@@ -46,16 +46,23 @@ module.exports = function (grunt) {
       }
     },
 
-
-    csslint: {
+    jscs: {
       options: {
-        csslintrc: 'less/.csslintrc'
+        config: 'js/.jscsrc'
       },
-      src: [
-        'dist/css/strapit.css',
-        'docs/assets/css/docs.css',
-        'docs/examples/**/*.css'
-      ]
+      grunt: {
+        options: {
+          requireCamelCaseOrUpperCaseIdentifiers: null,
+          requireParenthesesAroundIIFE: true
+        },
+        src: '<%= jshint.grunt.src %>'
+      },
+      src: {
+        src: '<%= jshint.src.src %>'
+      },
+      assets: {
+        src: '<%= jshint.assets.src %>'
+      }
     },
 
     concat: {
@@ -71,15 +78,21 @@ module.exports = function (grunt) {
           'js/carousel.js',
           'js/collapse.js',
           'js/dropdown.js',
+          'js/fileinput.js',
+          'js/inputmask.js',
           'js/modal.js',
+          'js/offcanvas.js',
           'js/tooltip.js',
           'js/popover.js',
           'js/scrollspy.js',
           'js/tab.js',
           'js/affix.js',
+          'js/offcanvas.js',
+          'js/inputmask.js',
+          'js/fileinput.js',
           'js/responsive-tables.js'
         ],
-        dest: 'dist/js/bootstrap.js'
+        dest: 'dist/js/strapit.js'
       }
     },
 
@@ -87,11 +100,20 @@ module.exports = function (grunt) {
       bootstrap: {
         options: {
           banner: '<%= banner %>\n',
-          report: 'min'
         },
         src: '<%= concat.bootstrap.dest %>',
-        dest: 'dist/js/bootstrap.min.js'
+        dest: 'dist/js/strapit.min.js'
       },
+      docsJs: {
+        options: {
+          preserveComments: 'some'
+        },
+        src: [
+          'docs/assets/js/holder.js',
+          'docs/assets/js/application.js'
+        ],
+        dest: 'docs/assets/js/docs.min.js'
+      }
     },
 
     less: {
@@ -109,12 +131,78 @@ module.exports = function (grunt) {
       },
       minify: {
         options: {
-          cleancss: true,
-          report: 'min'
+          cleancss: true
         },
         files: {
           'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css'
         }
+      }
+    },
+
+    autoprefixer: {
+      options: {
+        browsers: ['last 2 versions', 'ie 8', 'ie 9', 'android 2.3', 'android 4', 'opera 12']
+      },
+      core: {
+        options: {
+          map: true
+        },
+        src: 'dist/css/<%= pkg.name %>.css'
+      },
+      docs: {
+        src: 'docs/assets/css/docs.css'
+      },
+      examples: {
+        expand: true,
+        cwd: 'docs/examples/',
+        src: ['**/*.css'],
+        dest: 'docs/examples/'
+      }
+    },
+
+    csslint: {
+      options: {
+        csslintrc: 'less/.csslintrc'
+      },
+      src: [
+        'dist/css/bootstrap.css',
+      ],
+      examples: [
+        'docs/examples/**/*.css'
+      ],
+      docs: {
+        options: {
+          ids: false,
+          'overqualified-elements': false
+        },
+        src: 'docs/assets/css/docs.css'
+      }
+    },
+
+    cssmin: {
+      compress: {
+        options: {
+          compatibility: 'ie8',
+          keepSpecialComments: '*',
+          noAdvanced: true, // turn advanced optimizations off until the issue is fixed in clean-css
+        },
+        src: [
+          'docs/assets/css/docs.css',
+          'docs/assets/css/pygments-manni.css'
+        ],
+        dest: 'docs/assets/css/docs.min.css'
+      },
+      maincompress: {
+        options: {
+          keepSpecialComments: '*',
+          noAdvanced: true, // turn advanced optimizations off until the issue is fixed in clean-css
+          report: 'min',
+          selectorsMergeMode: 'ie8'
+        },
+        src: [
+          'dist/css/<%= pkg.name %>.css'
+        ],
+        dest: 'dist/css/<%= pkg.name %>.min.css'
       }
     },
 
@@ -138,16 +226,21 @@ module.exports = function (grunt) {
         config: 'less/.csscomb.json'
       },
       dist: {
-        files: {
-          'dist/css/<%= pkg.name %>.css': 'dist/css/<%= pkg.name %>.css',
-          'docs/assets/css/docs.css': 'docs/assets/css/docs.css'
-        }
+        expand: true,
+        cwd: 'dist/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/css/'
       },
       examples: {
         expand: true,
         cwd: 'docs/examples/',
         src: ['**/*.css'],
         dest: 'docs/examples/'
+      },
+      docs: {
+        files: {
+          'docs/assets/css/docs.css': 'docs/assets/css/docs.css'
+        }
       }
     },
 
@@ -155,6 +248,11 @@ module.exports = function (grunt) {
       fonts: {
         expand: true,
         src: 'fonts/*',
+        dest: 'dist/'
+      },
+      custom: {
+        expand: true,
+        src: 'img/custom/*',
         dest: 'dist/'
       },
       webicons: {
@@ -170,6 +268,7 @@ module.exports = function (grunt) {
           '{css,js}/*.min.*',
           'css/*.map',
           'fonts/*',
+          'img/custom/*',
           'img/webicons/*'
         ],
         dest: 'docs/dist'
@@ -221,7 +320,7 @@ module.exports = function (grunt) {
       },
       less: {
         files: ['less/*.less', 'less/*/*.less'],
-        tasks: ['less', 'csscomb', 'usebanner', 'copy:docs'],
+        tasks: ['less', 'csscomb', 'cssmin:maincompress', 'usebanner', 'copy:docs'],
         options: {
           livereload: true
         }
@@ -252,13 +351,13 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-js', ['concat', 'uglify']);
 
   // CSS distribution task.
-  grunt.registerTask('dist-css', ['less', 'csslint', 'csscomb', 'usebanner']);
+  grunt.registerTask('dist-css', ['less:compileCore', 'autoprefixer', 'usebanner', 'csscomb', 'less:minify', 'cssmin']);
 
   // Docs distribution task.
-  grunt.registerTask('dist-docs', ['copy:docs']);
+  grunt.registerTask('dist-docs', 'copy:docs');
 
   // Full distribution task.
-  grunt.registerTask('dist', ['clean', 'dist-css', 'copy:fonts', 'copy:webicons', 'dist-js', 'dist-docs']);
+  grunt.registerTask('dist', ['clean', 'dist-css', 'copy:fonts', 'copy:webicons', 'copy:custom', 'dist-js', 'dist-docs']);
 
   // Default task.
   grunt.registerTask('default', ['dist']);

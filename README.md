@@ -3,7 +3,7 @@ Strapit
 
 A CSS framework mashup of Twitter's Bootstrap and ZURB's Foundation.
 
-## Current version: 2.0.5
+## Current version: 2.0.6
 
 Basically, this framework retains the styling and semantics of Bootstrap with the Javascript grid, responsive utilities and Javascript element ideas coming from Foundation. UI elements of Foundation, e.g. subnavs, switches, and flex-video, have been ported over to the Bootstrap styles. Strapit is still written in LESS and retains Bootstrap's mixins, however, we are considering a SASS version and porting the best of each's mixins into both languages for two distinct versions.
 
@@ -23,7 +23,7 @@ Strapit's documentation, included in this repo in the root directory, is built w
 
 ### Running documentation locally
 
-1. If necessary, [install Jekyll](http://jekyllrb.com/docs/installation) (requires v1.x).
+1. If necessary, [install Jekyll](http://jekyllrb.com/docs/installation) (requires v1.5.x).
   - **Windows users:** Read [this unofficial guide](https://github.com/juthilo/run-jekyll-on-windows/) to get Jekyll up and running without problems. We use Pygments for syntax highlighting, so make sure to read the sections on installing Python and Pygments.
 2. From the root `/bootstrap` directory, run `jekyll serve` in the command line.
   - **Windows users:** While we use Jekyll's `encoding` setting, you might still need to change the command prompt's character encoding ([code page](http://en.wikipedia.org/wiki/Windows_code_page)) to UTF-8 so Jekyll runs without errors. For Ruby 2.0.0, run `chcp 65001` first. For Ruby 1.9.3, you can alternatively do `SET LANG=en_EN.UTF-8`.
@@ -44,7 +44,7 @@ From the command line:
 
 When completed, you'll be able to run the various Grunt commands provided from the command line.
 
-**Unfamiliar with `npm`? Don't have node installed?** That's a-okay. npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
+**Unfamiliar with npm? Don't have node installed?** That's a-okay. npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
 
 ### Available Grunt commands
 

@@ -1,0 +1,13 @@
+<svg width="67" height="67" xmlns="http://www.w3.org/2000/svg">
+ <linearGradient gradientTransform="matrix(20.8333 0 0 -20.8333 392.334 5685.6719)" y2="6.59852" x2="-0.80593" y1="6.64651" x1="-0.80593" id="SVGID_1_">
+  <stop stop-color="#E358BA" offset="0"/>
+  <stop stop-color="#D44DB1" offset="0.2881"/>
+  <stop stop-color="#AE309A" offset="0.8385"/>
+  <stop stop-color="#A12693" offset="1"/>
+ </linearGradient>
+ <g>
+  <title>Orkut</title>
+  <rect id="svg_80" height="66.991" width="66.991" fill="#E3E3E3" y="0.005" x="0.005"/>
+  <path id="svg_81" d="m33.5,20.521c7.168,0 12.98,5.812 12.98,12.979c0,7.169 -5.812,12.979 -12.98,12.979c-7.168,0 -12.98,-5.811 -12.98,-12.979c0.001,-7.167 5.813,-12.979 12.98,-12.979m0,-6.441c-10.708,0 -19.42,8.712 -19.42,19.42c0,10.708 8.711,19.421 19.42,19.421c10.707,0 19.422,-8.713 19.422,-19.421c0,-10.707 -8.713,-19.42 -19.422,-19.42l0,0z" fill="url(#SVGID_1_)"/>
+ </g>
+</svg>

@@ -37,7 +37,6 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
     <p>Strapit sets basic global show-grid, typography, and link styles. Specifically, we:</p>
     <ul class="list">
       <li>Remove <code>margin</code> on the body</li>
-      <li>Add <code>position: relative</code> on the body for use in off-canvas layouts</li>
       <li>Set <code>background-color: #fff;</code> on the <code>body</code></li>
       <li>Use the <code>@font-family-base</code>, <code>@font-size-base</code>, and <code>@line-height-base</code> attributes as our typographic base</li>
       <li>Set the global link color via <code>@link-color</code> and apply link underlines only on <code>:hover</code></li>
@@ -64,23 +63,19 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
     <h1 id="grid" class="page-header">Grid system</h1>
     <p class="lead">Strapit includes a responsive, mobile first fluid grid system that appropriately scales as the device or viewport size increases. It includes <a href="#grid-example-basic">predefined classes</a> for easy layout options, as well as powerful <a href="#grid-less">mixins for generating more semantic layouts</a>.</p>
 
-    <div class="callout info">
-      <h4>But first, a word on the evolving philosophies behind responsive design</h4>
-      <p>You may notice that we have gone with the Foundation grid (with some modifications, such as the addition of Foundation's currently "experimental" <code>.md</code> class) over Bootstrap 3.0. The reason for this is we feel the Foundation grid is simpler and subsequently easier to modify.</p>
-      <p>Bootstrap provides for four distinct sizes that resolve to phone, tablets, desktops and large desktops in practice. We don't think it is useful to think of breakpoints in this way.</p>
-      <p>Instead, breakpoints should apply when the design needs to change to accommodate the viewport within which it is contained. So the breakpoints could be as few as one or as many as 20, the important consideration is that the site is functional and viewable at all sizes from 320px and up.</p>
-      <p>Obviously this is tough to accommodate for in a framework. So, we feel the winning grid is the one that has the least code to change, which, as of today, is Foundation's. That said, we like Bootstrap's class names and conventions better, so we used those.</p>
-    </div>
     <h3 id="grid-intro">How the grid works</h3>
     <p>Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the Strapit grid system works:</p>
     <ul class="list">
-      <li>Rows must be placed within a <code>.container</code> for proper alignment and padding.</li>
+      <li>Rows must be placed within a <code>.container</code> or <code>.container-fluid</code> for proper alignment and padding.</li>
       <li>Use rows to create horizontal groups of columns.</li>
       <li>Content should be placed within columns, and only columns may be immediate children of rows. Columns are defined with the <code>.col</code> class.</li>
       <li>Columns create gutters (gaps between column content) via <code>padding</code>. That padding is offset in rows for the first and last column via negative margin on <code>.row</code>s.</li>
+      <li>The negative margin is why the examples below are outdented. It's so that content within grid columns is lined up with non-grid content.</li>
       <li>Grid columns are created by resizing the <code>.col</code> elements with screen size and column width modifiers (such as <code>.md-4</code> which reads "four columns on a medium-sized screen or more" or <code>.lg-6</code>, which reads "six columns on a large-screen screen or more" etc.).</li>
+      <li>Grid classes apply to devices with screen widths greater than or equal to the breakpoint sizes, and override grid classes targeted at smaller devices. Therefore, applying any <code>.md-</code> class to an element will not only affect its styling on medium devices but also on large devices if a <code>.lg-</code> class is not present.</li>
       <li>Less mixins can also be used for <a href="#grid-less">more semantic layouts</a>.</li>
     </ul>
+    <p>Look to the examples for applying these principles to your code.</p>
     <div class="callout info">
       <h4>Grids and full-width layouts</h4>
       <p>If you are using the full width of the container, <strong>there is no need to define anything but the container class</strong>. However, if you want the content to go to the edges of your screen, the element must be put into either a element with a <code>.row</code> class or add to that element  <code>margin: 0 -15px</code> to offset the <code>padding: 0 15px;</code> defined on the <code>.container</code> element.</p>
@@ -487,6 +482,26 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
 <p>If you are having a hard time viewing these examples here, or want to see more grid combinations, <a href="../examples/grid">this page</a> may help</p>
 </div>
 
+  <h3 id="grid-example-fluid">Fluid container</h3>
+  <p>Turn any fixed-width grid layout into a full-width layout by changing your outermost <code>.container</code> to <code>.container-fluid</code>.</p>
+{% highlight html %}
+<div class="container-fluid">
+  <div class="row">
+    ...
+  </div>
+</div>
+{% endhighlight %}
+<div class="callout warning">
+  <h4>Using container versus container-fluid</h4>
+<p>Using <code>.container-fluid</code> is recommended <strong class="text-danger">only if you are using the pre-complied Strapit files</strong>. If you are using Less files to compile your CSS and you do not want the default static widths that occur at certain breakpoints, comment out the <code>grid-stops.less</code> file in your <code>strapit.less</code> file and <code>.container</code> will work just like <code>.container-fluid</code>.</p>
+</div>
+
+
+<h3 id="grid-static">Static grid</h3>
+<p>If you are using Less to create a custom Strapit CSS file, you can create a static grid by swapping out a couple of imports in your <code>strapit.less</code> file. This option freezes the container width and uses <code>.col-*</code> classes for styling.</p>
+<p>Accomplishing this requires the <code>grid-fluid.less</code> and <code>grid-stop.less</code> files be commented out and the <code>grid-static.less</code> file be uncommented.</p>
+<p>Like with the <a href="../getting-started/#disable-responsive">non-responsive Strapit</a> option, various items, such as navbars, will still react to browser resizing, so some other adjustments may be required. For a more detailed explanation on that and other issues, <a href="../examples/static-grid/">visit the example page</a>.</p>
+
 
 <h3 id="grid-less">Less mixins and variables</h3>
 <p>In addition to <a href="#grid-example-basic">prebuilt grid classes</a> for fast layouts, Strapit includes Less variables and mixins for quickly generating your own simple, semantic layouts.</p>
@@ -778,9 +793,13 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
   <div class="bs-docs-section">
     <h1 id="type" class="page-header">Typography</h1>
 
+    <!-- Using Less -->
+    <h3 id="type-less">Built with Less</h3>
+    <p>The typographic scale is based on two Less variables in <strong>variables.less</strong>: <code>@font-size-base</code> and <code>@line-height-base</code>. The first is the base font-size used throughout and the second is the base line-height. We use those variables and some simple math to create the margins, paddings, and line-heights of all our type and more. Customize them and Strapit adapts.</p>
+
     <!-- Headings -->
     <h2 id="type-headings">Headings</h2>
-    <p>All HTML headings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> are available.</p>
+    <p>All HTML headings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, are available. <code>.h1</code> through <code>.h6</code> classes are also available, for when you want to match the font styling of a heading. If you want the styling to be applied inline, add the class <code>.inline</code> to the <code>.h*</code> class</p>
     <div class="bs-example bs-example-type">
       <table class="table">
         <tbody>
@@ -801,7 +820,7 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
             <td class="type-info">Semibold 18px</td>
           </tr>
           <tr>
-            <td><h4>h4. Strapit heading</h4></td>
+            <td><h5>h5. Strapit heading</h5></td>
             <td class="type-info">Semibold 14px</td>
           </tr>
           <tr>
@@ -816,8 +835,15 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
 <h2>h2. Strapit heading</h2>
 <h3>h3. Strapit heading</h3>
 <h4>h4. Strapit heading</h4>
-<h4>h4. Strapit heading</h4>
+<h5>h5. Strapit heading</h5>
 <h6>h6. Strapit heading</h6>
+
+<p class="h1">h1. Strapit heading</p>
+<p class="h2">h2. Strapit heading</p>
+<p class="h3">h3. Strapit heading</p>
+<p class="h4">h4. Strapit heading</p>
+<p class="h5">h5. Strapit heading</p>
+<p class="h6">h6. Strapit heading</p>
 {% endhighlight %}
 
     <p>Also included with headings is an autoscaling <code>&lt;small&gt;</code> element. Use it for smaller, gray secondary text in any heading.</p>
@@ -825,7 +851,7 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
       <table class="table">
         <tbody>
           <tr>
-            <td><h1>h1. Strapit heading <small>Secondary text</small></h1></td>
+            <td><h1>h1  Strapit heading <small>Secondary text</small></h1></td>
           </tr>
           <tr>
             <td><h2>h2. Strapit heading <small>Secondary text</small></h2></td>
@@ -837,7 +863,7 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
             <td><h4>h4. Strapit heading <small>Secondary text</small></h4></td>
           </tr>
           <tr>
-            <td><h4>h4. Strapit heading <small>Secondary text</small></h4></td>
+            <td><h5>h5. Strapit heading <small>Secondary text</small></h5></td>
           </tr>
           <tr>
             <td><h6>h6. Strapit heading <small>Secondary text</small></h6></td>
@@ -850,7 +876,7 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
 <h2>h2. Strapit heading <small>Secondary text</small></h2>
 <h3>h3. Strapit heading <small>Secondary text</small></h3>
 <h4>h4. Strapit heading <small>Secondary text</small></h4>
-<h4>h4. Strapit heading <small>Secondary text</small></h4>
+<h5>h5. Strapit heading <small>Secondary text</small></h5>
 <h6>h6. Strapit heading <small>Secondary text</small></h6>
 {% endhighlight %}
     <h2 id="sub-headings">Subheads</h2>
@@ -885,82 +911,6 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
     </div>
 {% highlight html %}
 <p class="lead">...</p>
-{% endhighlight %}
-
-    <!-- Using Less -->
-    <h3>Built with Less</h3>
-    <p>The typographic scale is based on two Less variables in <strong>variables.less</strong>: <code>@font-size-base</code> and <code>@line-height-base</code>. The first is the base font-size used throughout and the second is the base line-height. We use those variables and some simple math to create the margins, paddings, and line-heights of all our type and more. Customize them and Strapit adapts.</p>
-
-
-    <!-- Emphasis -->
-    <h2 id="type-emphasis">Emphasis</h2>
-    <p>Make use of HTML's default emphasis tags with lightweight styles.</p>
-
-    <h3>Small text</h3>
-    <p>For de-emphasizing inline or blocks of text, use the <code>&lt;small&gt;</code> tag to set text at 85% the size of the parent. Heading elements receive their own <code>font-size</code> for nested <code>&lt;small&gt;</code> elements.</p>
-    <div class="bs-example">
-      <p><small>This line of text is meant to be treated as fine print.</small></p>
-    </div>
-{% highlight html %}
-<small>This line of text is meant to be treated as fine print.</small>
-{% endhighlight %}
-
-
-    <h3>Bold</h3>
-    <p>For emphasizing a snippet of text with a heavier font-weight.</p>
-    <div class="bs-example">
-      <p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
-    </div>
-{% highlight html %}
-<strong>rendered as bold text</strong>
-{% endhighlight %}
-
-    <h3>Italics</h3>
-    <p>For emphasizing a snippet of text with italics.</p>
-    <div class="bs-example">
-      <p>The following snippet of text is <em>rendered as italicized text</em>.</p>
-    </div>
-{% highlight html %}
-<em>rendered as italicized text</em>
-{% endhighlight %}
-
-    <div class="callout info">
-      <h4>Alternate elements</h4>
-      <p>Feel free to use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> in HTML5. <code>&lt;b&gt;</code> is meant to highlight words or phrases without conveying additional importance while <code>&lt;i&gt;</code> is mostly for voice, technical terms, etc.</p>
-    </div>
-
-    <h3>Alignment classes</h3>
-    <p>Easily realign text to components with text alignment classes.</p>
-    <div class="bs-example">
-      <p class="text-left">Left aligned text.</p>
-      <p class="text-center">Center aligned text.</p>
-      <p class="text-right">Right aligned text.</p>
-      <p class="text-justify">Justified text. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Maecenas sed diam eget risus varius blandit sit amet non magna. Justified text. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Maecenas sed diam eget risus varius blandit sit amet non magna. Justified text.</p>
-    </div>
-{% highlight html %}
-<p class="text-left">Left aligned text.</p>
-<p class="text-center">Center aligned text.</p>
-<p class="text-right">Right aligned text.</p>
-<p class="text-justify">...</p>
-{% endhighlight %}
-
-    <h3>Emphasis classes</h3>
-    <p>Convey meaning through color with a handful of emphasis utility classes.</p>
-    <div class="bs-example">
-      <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-      <p class="text-primary">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-      <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-      <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-      <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
-      <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
-    </div>
-{% highlight html %}
-<p class="text-muted">...</p>
-<p class="text-primary">...</p>
-<p class="text-success">...</p>
-<p class="text-info">...</p>
-<p class="text-warning">...</p>
-<p class="text-danger">...</p>
 {% endhighlight %}
 
     <!-- Lists -->
@@ -1149,6 +1099,124 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
     </div>
   </div>
 
+
+<!-- Inline text elements -->
+  <h2 id="type-inline-text">Inline text elements</h2>
+  <h3>Marked text</h3>
+  <p>For highlighting a run of text due to its relevance in another context, use the <code>&lt;mark&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+  </div>
+{% highlight html %}
+You can use the mark tag to <mark>highlight</mark> text
+{% endhighlight %}
+
+
+  <h3>Deleted text</h3>
+  <p>For indicating blocks of text that have been deleted use the <code>&lt;del&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><del>This line of text is meant to be treated as deleted text.</del></p>
+  </div>
+{% highlight html %}
+<del>This line of text is meant to be treated as deleted text.</del>
+{% endhighlight %}
+
+  <h3>Strikethrough text</h3>
+  <p>For indicating blocks of text that are no longer relevant use the <code>&lt;s&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+  </div>
+{% highlight html %}
+<s>This line of text is meant to be treated as no longer accurate.</s>
+{% endhighlight %}
+
+  <h3>Inserted text</h3>
+  <p>For indicating additions to the document use the <code>&lt;ins&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+  </div>
+{% highlight html %}
+<ins>This line of text is meant to be treated as an addition to the document.</ins>
+{% endhighlight %}
+
+  <h3>Underlined text</h3>
+  <p>To underline text use the <code>&lt;u&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><u>This line of text is will render as underlined</u></p>
+  </div>
+{% highlight html %}
+<u>This line of text is will render as underlined</u>
+{% endhighlight %}
+
+    <p>Make use of HTML's default emphasis tags with lightweight styles.</p>
+
+    <h3>Small text</h3>
+    <p>For de-emphasizing inline or blocks of text, use the <code>&lt;small&gt;</code> tag to set text at 85% the size of the parent. Heading elements receive their own <code>font-size</code> for nested <code>&lt;small&gt;</code> elements.</p>
+    <div class="bs-example">
+      <p><small>This line of text is meant to be treated as fine print.</small></p>
+    </div>
+{% highlight html %}
+<small>This line of text is meant to be treated as fine print.</small>
+{% endhighlight %}
+
+
+    <h3>Bold</h3>
+    <p>For emphasizing a snippet of text with a heavier font-weight.</p>
+    <div class="bs-example">
+      <p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
+    </div>
+{% highlight html %}
+<strong>rendered as bold text</strong>
+{% endhighlight %}
+
+    <h3>Italics</h3>
+    <p>For emphasizing a snippet of text with italics.</p>
+    <div class="bs-example">
+      <p>The following snippet of text is <em>rendered as italicized text</em>.</p>
+    </div>
+{% highlight html %}
+<em>rendered as italicized text</em>
+{% endhighlight %}
+
+    <div class="callout info">
+      <h4>Alternate elements</h4>
+      <p>Feel free to use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> in HTML5. <code>&lt;b&gt;</code> is meant to highlight words or phrases without conveying additional importance while <code>&lt;i&gt;</code> is mostly for voice, technical terms, etc.</p>
+    </div>
+
+    <h2 id="type-alignment">Alignment classes</h2>
+    <p>Easily realign text to components with text alignment classes.</p>
+    <div class="bs-example">
+      <p class="text-left">Left aligned text.</p>
+      <p class="text-center">Center aligned text.</p>
+      <p class="text-right">Right aligned text.</p>
+      <p class="text-justify">Justified text. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Maecenas sed diam eget risus varius blandit sit amet non magna. Justified text. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh. Maecenas sed diam eget risus varius blandit sit amet non magna. Justified text.</p>
+    </div>
+{% highlight html %}
+<p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">...</p>
+{% endhighlight %}
+
+    <h3>Emphasis classes</h3>
+    <p>Convey meaning through color with a handful of emphasis utility classes.</p>
+    <div class="bs-example">
+      <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+      <p class="text-primary">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+      <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+      <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+      <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+    </div>
+{% highlight html %}
+<p class="text-muted">...</p>
+<p class="text-primary">...</p>
+<p class="text-success">...</p>
+<p class="text-info">...</p>
+<p class="text-warning">...</p>
+<p class="text-danger">...</p>
+{% endhighlight %}
+
    <!-- Blockquotes -->
     <h2 id="type-blockquotes">Blockquotes</h2>
     <p>For quoting blocks of content from another source within your document.</p>
@@ -1257,10 +1325,10 @@ lead: "Global CSS settings, fundamental HTML elements styled and enhanced with e
     <h2 id="type-keystrokes">Keystrokes</h2>
     <p>If you have keyboard affordances, you might need to explain them. To that end, there's a simple keystroke character affordance.
 <div class="bs-example">
-  </p>For example, to close your browser hit <kbd>Cmd + Q</kbd>. Don't actually do it. There's more docs to read.</p>
+  </p>For example, to close your browser hit <kbd>Cmd Q</kbd>. Don't actually do it. There's more docs to read.</p>
 </div>
 {% highlight html %}
-</p>For example, to close your browser hit <kbd>Cmd + Q</kbd>. Don't actually do it. There's more docs to read.</p>
+</p>For example, to close your browser hit <kbd>Cmd Q</kbd>. Don't actually do it. There's more docs to read.</p>
 {% endhighlight %}
 
 
@@ -1304,6 +1372,25 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 {% endhighlight %}
 
     <p>You may optionally add the <code>.pre-scrollable</code> class, which will set a max-height of 350px and provide a y-axis scrollbar.</p>
+
+  <h2 id="code-variables">Variables</h2>
+  <p>For indicating variables use the <code>&lt;var&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><var>y</var> = <var>m</var><var>x</var> <var>b</var></p>
+
+  </div>
+{% highlight html %}
+<var>y</var> = <var>m</var><var>x</var> <var>b</var>
+{% endhighlight %}
+
+  <h2 id="code-sample-output">Sample output</h2>
+  <p>For indicating blocks sample output from a program use the <code>&lt;samp&gt;</code> tag.</p>
+  <div class="bs-example">
+    <p><samp>This text is meant to be treated as sample output from a computer program.</samp></p>
+  </div>
+{% highlight html %}
+<samp>This text is meant to be treated as sample output from a computer program.</samp>
+{% endhighlight %}
   </div>
 
 
@@ -1658,7 +1745,6 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </tr>
 {% endhighlight %}
 
-
     <h2 id="tables-responsive">Responsive tables</h2>
     <p>There are two options for responsive tables in Strapit. Both require the file <code>tables-responsive.less</code>.</p>
     <p>The first option requires no Javascript. Create responsive tables by wrapping any <code>.table</code> in <code>.table-responsive</code> to make them scroll horizontally.</p>
@@ -1715,77 +1801,9 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
   </table>
 </div>
 {% endhighlight %}
-  <h3>Advanced JS solution</h3>
-  <p>This CSS/JS solution allows tables to shrink on small devices without sacrificing the value of tables, comparison of columns.</p>
-  <p>This requires an additional js file: <code>responsive-tables.js</code>. This file helps us create some new elements on small devices, so we don't have to modify our table markup on the page. The CSS applies the requisite positioning and overflow styles to make the new elements work.</p>
-    <div class="bs-example">
-<div class="table-responsive">
-<table class="table">
-<thead>
-<tr>
-<th>Header 1</th>
-<th>Header 2</th>
-<th>Header 3</th>
-<th>Header 4</th>
-<th>Header 5</th>
-<th>Header 6</th>
-<th>Header 7</th>
-<th>Header 8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>row 1, cell 1</td>
-<td>row 1, cell 2</td>
-<td>row 1, cell 3</td>
-<td>row 1, cell 4</td>
-<td>row 1, cell 5</td>
-<td>row 1, cell 6</td>
-<td>row 1, cell 7</td>
-<td>row 1, cell 8</td>
-</tr>
-<tr>
-<td>row 2, cell 1</td>
-<td>row 2, cell 2</td>
-<td>row 2, cell 3</td>
-<td>row 2, cell 4</td>
-<td>row 2, cell 5</td>
-<td>row 2, cell 6</td>
-<td>row 2, cell 7</td>
-<td>row 2, cell 8</td>
-</tr>
-<tr>
-<td>row 3, cell 1</td>
-<td>row 3, cell 2</td>
-<td>row 3, cell 3</td>
-<td>row 3, cell 4</td>
-<td>row 3, cell 5</td>
-<td>row 3, cell 6</td>
-<td>row 3, cell 7</td>
-<td>row 3, cell 8</td>
-</tr>
-<tr>
-<td>row 4, cell 1</td>
-<td>row 4, cell 2</td>
-<td>row 4, cell 3</td>
-<td>row 4, cell 4</td>
-<td>row 4, cell 5</td>
-<td>row 4, cell 6</td>
-<td>row 4, cell 7</td>
-<td>row 4, cell 8</td>
-</tr>
-</tbody>
-</table>
-</div>
-    </div><!-- /example -->
-{% highlight html %}
-<div class="table-responsive">
-  <table class="table">
-    ...
-  </table>
-</div>
-{% endhighlight %}
-</div>
+    <h3>Advanced JS solution</h3>
+    <p>This CSS/JS solution allows tables to shrink on small devices without sacrificing the value of tables, comparison of columns. See <a href="../javascript/#rtables">an example</a> in the Javascript section for more information.</p>
+  </div>
 
   <!-- Forms
   ================================================== -->
@@ -1806,7 +1824,14 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
         </div>
         <div class="form-group">
           <label for="exampleInputFile">File input</label>
-          <input type="file" id="exampleInputFile">
+          <!-- <input type="file" id="exampleInputFile"> -->
+          <div class="fileinput fileinput-new" data-provides="fileinput">
+            <span class="btn default btn-file">
+            <span class="fileinput-new">Select file</span>
+            <span class="fileinput-exists">Change</span><input type="file"></span>
+            <span class="fileinput-filename"></span>
+            <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+          </div>
           <p class="help-block">Example block-level help text here.</p>
         </div>
         <div class="checkbox">
@@ -1829,7 +1854,14 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
   </div>
   <div class="form-group">
     <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
+    <!-- <input type="file" id="exampleInputFile"> -->
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+      <span class="btn default btn-file">
+      <span class="fileinput-new">Select file</span>
+      <span class="fileinput-exists">Change</span><input type="file"></span>
+      <span class="fileinput-filename"></span>
+      <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+    </div>
     <p class="help-block">Example block-level help text here.</p>
   </div>
   <div class="checkbox">
@@ -1861,6 +1893,12 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
         <div class="form-group">
           <label class="sr-only" for="exampleInputEmail2">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">@</div>
+            <input class="form-control" type="email" placeholder="Enter email">
+          </div>
         </div>
         <div class="form-group">
           <label class="sr-only" for="exampleInputPassword2">Password</label>
@@ -2039,7 +2077,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </div>
 {% endhighlight %}
 
-    <h4>Inline checkboxes</h4>
+    <h4>Inline checkboxes and radios</h4>
     <p>Use <code>.checkbox-inline</code> or <code>.radio-inline</code> class to a series of checkboxes or radios for controls appear on the same line.</p>
     <div class="bs-example">
       <form role="form">
@@ -2053,6 +2091,18 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
           <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
         </label>
       </form>
+      <br />
+      <form role="form">
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+        </label>
+      </form>
     </div><!-- /.bs-example -->
 {% highlight html %}
 <label class="checkbox-inline">
@@ -2063,6 +2113,15 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </label>
 <label class="checkbox-inline">
   <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
 </label>
 {% endhighlight %}
 
@@ -2141,10 +2200,6 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </form>
 {% endhighlight %}
 
-
-    <h2 id="forms-control-states">Form states</h2>
-    <p>Provide feedback to users or visitors with basic feedback states on form controls and labels.</p>
-
     <h3 id="forms-input-focus">Input focus</h3>
     <p>We remove the default <code>outline</code> styles on some form controls and apply a <code>box-shadow</code> in its place for <code>:focus</code>.</p>
     <div class="bs-example">
@@ -2157,7 +2212,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 {% endhighlight %}
 
     <h3 id="forms-disabled-inputs">Disabled inputs</h3>
-    <p>Add the <code>disabled</code> attribute on an input to prevent user input and trigger a slightly different look.</p>
+    <p>Add the <code>disabled</code> boolean attribute on an input to prevent user input and trigger a slightly different look.</p>
     <div class="bs-example">
       <form role="form">
         <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here…" disabled>
@@ -2171,8 +2226,8 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
     <p>Add the <code>disabled</code> attribute to a <code>&lt;fieldset&gt;</code> to disable all the controls within the <code>&lt;fieldset&gt;</code> at once.</p>
 
     <div class="callout warning">
-      <h4>Link functionality of <code>&lt;a&gt;</code> not impacted</h4>
-      <p>This class will only change the appearance of <code>&lt;a class="btn default"&gt;</code> buttons, not their functionality. Use custom JavaScript to disable links here.</p>
+      <h4>Caveat about link functionality of <code>&lt;a&gt;</code></h4>
+      <p>Our styles use <code>pointer-events: none</code> to try to disable the link functionality of <code>&lt;a class="btn *"&gt;</code> buttons in this case, but that CSS property is not yet standardized and isn't fully supported in Opera 18 and below, or in Internet Explorer 11. So to be safe, use custom JavaScript to disable such links.</p>
     </div>
 
     <div class="callout danger">
@@ -2225,7 +2280,18 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 </form>
 {% endhighlight %}
 
-    <h3 id="forms-validation">Validation states</h3>
+<h2 id="forms-control-readonly">Readonly inputs</h2>
+  <p>Add the <code>readonly</code> boolean attribute on an input to prevent user input and style the input as disabled.</p>
+  <div class="bs-example">
+    <form role="form">
+      <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+    </form>
+  </div><!-- /.bs-example -->
+{% highlight html %}
+<input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+{% endhighlight %}
+
+    <h2 id="forms-control-validation">Validation states</h2>
     <p>Strapit includes validation styles for error, warning, and success states on form controls. To use, add <code>.has-warning</code>, <code>.has-error</code>, or <code>.has-success</code> to the parent element. Any <code>.control-label</code>, <code>.form-control</code>, and <code>.help-block</code> within that element will receive the validation styles.</p>
 
     <div class="bs-example">
@@ -2257,6 +2323,92 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
   <label class="control-label" for="inputError">Input with error</label>
   <input type="text" class="form-control" id="inputError">
 </div>
+{% endhighlight %}
+
+  <h3>With optional icons</h3>
+  <p>You can also add optional feedback icons with the addition of <code>.has-feedback</code> and the right icon.</p>
+  <div class="callout warning">
+    <h4>Icons, labels, and input groups</h4>
+    <p>Manual positioning of feedback icons is required for inputs without a label and for <a href="../components#input-groups">input groups</a> with an add-on on the right. For inputs without labels, adjust the <code>top</code>value. For input groups, adjust the <code>right</code> value to an appropriate pixel value depending on the width of your addon.</p>
+  </div>
+  <div class="bs-example">
+    <form role="form">
+      <div class="form-group has-success has-feedback">
+        <label class="control-label" for="inputSuccess2">Input with success</label>
+        <input type="text" class="form-control" id="inputSuccess2">
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+      <div class="form-group has-warning has-feedback">
+        <label class="control-label" for="inputWarning2">Input with warning</label>
+        <input type="text" class="form-control" id="inputWarning2">
+        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+      </div>
+      <div class="form-group has-error has-feedback">
+        <label class="control-label" for="inputError2">Input with error</label>
+        <input type="text" class="form-control" id="inputError2">
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      </div>
+    </form>
+  </div>
+{% highlight html %}
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputSuccess2">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess2">
+  <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+</div>
+<div class="form-group has-warning has-feedback">
+  <label class="control-label" for="inputWarning2">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning2">
+  <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+</div>
+<div class="form-group has-error has-feedback">
+  <label class="control-label" for="inputError2">Input with error</label>
+  <input type="text" class="form-control" id="inputError2">
+  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+</div>
+{% endhighlight %}
+
+  <p>Optional icons also work on horizontal and inline forms.</p>
+  <div class="bs-example">
+    <form class="form-horizontal" role="form">
+      <div class="form-group has-success has-feedback">
+        <label class="control-label col sm-3" for="inputSuccess3">Input with success</label>
+        <div class="col sm-9">
+          <input type="text" class="form-control" id="inputSuccess3">
+          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+{% highlight html %}
+<form class="form-horizontal" role="form">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label col sm-3" for="inputSuccess3">Input with success</label>
+    <div class="col sm-9">
+      <input type="text" class="form-control" id="inputSuccess3">
+      <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+    </div>
+  </div>
+</form>
+{% endhighlight %}
+
+  <div class="bs-example">
+    <form class="form-inline" role="form">
+      <div class="form-group has-success has-feedback">
+        <label class="control-label" for="inputSuccess4">Input with success</label>
+        <input type="text" class="form-control" id="inputSuccess4">
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+    </form>
+  </div>
+{% highlight html %}
+<form class="form-inline" role="form">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label" for="inputSuccess4">Input with success</label>
+    <input type="text" class="form-control" id="inputSuccess4">
+    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+  </div>
+</form>
 {% endhighlight %}
 
 
@@ -2447,7 +2599,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 <p>
   <button type="button" class="btn primary sm">Small button</button>
   <button type="button" class="btn default sm">Small button</button>
-</p
+</p>
 <p>
   <button type="button" class="btn primary xs">Extra small button</button>
   <button type="button" class="btn default xs">Extra small button</button>
@@ -2528,8 +2680,8 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
       We use <code>.disabled</code> as a utility class here, similar to the common <code>.active</code> class, so no prefix is required.
     </p>
     <div class="callout warning">
-      <h4>Link functionality not impacted</h4>
-      <p>This class will only change the <code>&lt;a&gt;</code>'s appearance, not its functionality. Use custom JavaScript to disable links here.</p>
+      <h4>Link functionality caveat</h4>
+      <p>This class uses <code>pointer-events: none</code> to try to disable the link functionality of <code>&lt;a&gt;</code>s, but that CSS property is not yet standardized and isn't fully supported in Opera 18 and below, or in Internet Explorer 11. So to be safe, use custom JavaScript to disable such links.</p>
     </div>
     <div class="callout warning">
       <h4>Context-specific usage</h4>
@@ -2785,10 +2937,10 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 {% endhighlight %}
 
 
-    <h3 id="helper-classes-screen-readers">Screen reader content</h3>
-    <p>Hide an element to all devices <strong>except screen readers</strong> with <code>.sr-only</code>. Necessary for following <a href="{{ site.baseurl }}getting-started/#accessibility">accessibility best practices</a>. Can also be used as a mixin.</p>
+    <h3 id="helper-classes-screen-readers">Screen reader and keyboard navigation content</h3>
+    <p>Hide an element to all devices <strong>except screen readers</strong> with <code>.sr-only</code>. Combine <code>.sr-only</code> with <code>.focusable</code> to show the element again when it's focused (e.g. by a keyboard-only user). Necessary for following <a href="../getting-started/#accessibility">accessibility best practices</a>. <code>.sr-only</code> can also be used as a mixin</p>
 {% highlight html %}
-<a class="sr-only" href="#content">Skip to main content</a>
+<a class="sr-only focusable" href="#content">Skip to main content</a>
 {% endhighlight %}
 {% highlight scss %}
 // Usage as a Mixin
@@ -3296,7 +3448,7 @@ a {
 {% endhighlight %}
 
     <h3 id="less-mixins-transitions">Transitions</h3>
-    <p>Three mixins for flexibility. Set all transition information with one, or specify a separate delay and duration as needed.</p>
+    <p>Multiple mixins for flexibility. Set all transition information with one, or specify a separate delay and duration as needed.</p>
 {% highlight scss %}
 .transition(@transition) {
   -webkit-transition: @transition;
@@ -3313,6 +3465,11 @@ a {
 .transition-duration(@transition-duration) {
   -webkit-transition-duration: @transition-duration;
           transition-duration: @transition-duration;
+}
+
+.transition-timing-function(@timing-function) {
+  -webkit-transition-timing-function: @timing-function;
+          transition-timing-function: @timing-function;
 }
 .transition-transform(@transition) {
   -webkit-transition: -webkit-transform @transition;
@@ -3462,7 +3619,7 @@ a {
 {% endhighlight %}
     <p>If you need a barber-stripe style gradient, that's easy, too. Just specify a single color and we'll overlay a translucent white stripe.</p>
 {% highlight scss %}
-#gradient > .striped(#333; #000; 45deg);
+#gradient > .striped(#333; 45deg);
 {% endhighlight %}
     <p>Up the ante and use three colors instead. Set the first color, the second color, the second color's color stop (a decimal value like 0.25), and the third color with these mixins:</p>
 {% highlight scss %}
