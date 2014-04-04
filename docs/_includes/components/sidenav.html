@@ -60,7 +60,7 @@
 
     <h2 id="sidenav-fixed">Fixed to left or right</h2>
     <p>Add either <code>.fixed-left</code> or <code>.fixed-right</code>.</p>
-    <div class="bs-example bs-sidenav-fixed-example">
+    <div class="bs-example bs-sidenav-fixed-example-left">
       <nav class="sidenav default fixed-left" role="navigation">
         <a class="sidenav-brand" href="#">Brand</a>
         <ul class="nav sidenav-nav">
@@ -72,6 +72,22 @@
     </div><!-- /example -->
 {% highlight html %}
 <nav class="sidenav default fixed-left offcanvas-sm" role="navigation">
+  ...
+</nav>
+{% endhighlight %}
+
+    <div class="bs-example bs-sidenav-fixed-example-right">
+      <nav class="sidenav default fixed-right" role="navigation">
+        <a class="sidenav-brand" href="#">Brand</a>
+        <ul class="nav sidenav-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </nav>
+    </div><!-- /example -->
+{% highlight html %}
+<nav class="sidenav default fixed-right offcanvas-sm" role="navigation">
   ...
 </nav>
 {% endhighlight %}

@@ -6,6 +6,7 @@
 
 body {
   position: relative;
+  overflow: auto !important; /* For offcanvas */
 }
 
 /* Keep code small in tables on account of limited space */
@@ -651,15 +652,22 @@ h1[id] {
  * Side nav styles
  */
 
-.bs-sidenav-fixed-example {
-  height: 200px;
+.bs-sidenav-fixed-example-left {
+  height: 220px;
   padding-left: 315px;
 }
-.bs-sidenav-fixed-example:after {
+.bs-sidenav-fixed-example-left:after {
   left: 315px;
 }
+.bs-sidenav-fixed-example-right {
+  height: 220px;
+  padding-right: 315px;
+}
+.bs-sidenav-fixed-example-right:after {
+  right: 315px;
+}
 .bs-sidenav-offcanvas-example {
-  min-height: 200px;
+  min-height: 220px;
   overflow: hidden;
 }
 .bs-sidenav-offcanvas-example:after {
@@ -676,13 +684,14 @@ h1[id] {
 .bs-sidenav-offcanvas-example p {
   color: #bbb;
 }
-.bs-sidenav-fixed-example .sidenav.fixed-left,
+.bs-sidenav-fixed-example-left .sidenav.fixed-left,
+.bs-sidenav-fixed-example-right .sidenav.fixed-right,
 .bs-sidenav-offcanvas-example .sidenav.fixed-left,
 .bs-sidenav-offcanvas-example .navbar.fixed-top {
   position: absolute;
   z-index: 1;
 }
-.bs-sidenav-offcanvas-example .sidenav.fixed-left {
+.bs-sidenav-offcanvas-example .sidenav.fixed-left, {
   -webkit-transform: translate(-300px, 0);
       -ms-transform: translate(-300px, 0);
        -o-transform: translate(-300px, 0);
