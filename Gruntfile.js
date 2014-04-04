@@ -306,10 +306,10 @@ module.exports = function (grunt) {
 
     watch: {
       grunt: {
+        files: 'Gruntfile.js',
         options: {
           reload: true
         },
-        files: ['Gruntfile.js']
       },
       reloader: {
         files: 'docs/*.html',
