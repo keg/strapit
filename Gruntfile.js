@@ -305,6 +305,12 @@ module.exports = function (grunt) {
     },
 
     watch: {
+      grunt: {
+        options: {
+          reload: true
+        },
+        files: ['Gruntfile.js']
+      },
       reloader: {
         files: 'docs/*.html',
         options: {
