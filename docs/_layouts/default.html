@@ -6,10 +6,10 @@
     <!-- Place anything custom after this. -->
   </head>
   <body id="top">
-    <a class="sr-only" href="#content">Skip navigation</a>
+    <a class="sr-only  sr-only-focusable" href="#content">Skip navigation</a>
 
     <!-- Docs master nav -->
-    {% include nav-main.html %}
+    {% include nav/nav-main.html %}
 
     <!-- Docs page layout -->
     <div class="bs-header" id="content">
@@ -25,21 +25,21 @@
           <div class="bs-sidebar hidden-print" role="complementary">
             <ul class="nav bs-sidenav">
               {% if page.slug == "getting-started" %}
-                {% include nav-getting-started.html %}
+                {% include nav/nav-getting-started.html %}
               {% elsif page.slug == "css" %}
-                {% include nav-css.html %}
+                {% include nav/nav-css.html %}
               {% elsif page.slug == "components" %}
-                {% include nav-components.html %}
+                {% include nav/nav-components.html %}
               {% elsif page.slug == "components2" %}
-                {% include nav-components2.html %}
+                {% include nav/nav-components2.html %}
               {% elsif page.slug == "js" %}
-                {% include nav-javascript.html %}
+                {% include nav/nav-javascript.html %}
               {% elsif page.slug == "js-xtra" %}
-                {% include nav-javascript-extras.html %}
+                {% include nav/nav-javascript-extras.html %}
               {% elsif page.slug == "custom" %}
-                {% include nav-custom.html %}
+                {% include nav/nav-custom.html %}
               {% elsif page.slug == "extras" %}
-                {% include nav-extras.html %}
+                {% include nav/nav-extras.html %}
               {% endif %}
             </ul>
             <a class="back-to-top" href="#top">
@@ -54,8 +54,6 @@
 
     </div>
 
-    <!-- Footer plus JS and analytics. -->
     {% include footer.html %}
-
   </body>
 </html>

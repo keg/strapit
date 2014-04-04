@@ -6,16 +6,14 @@
     <!-- Place anything custom after this. -->
   </head>
   <body class="bs-docs-home">
-    <a class="sr-only focusable" href="#content">Skip navigation</a>
+    <a class="sr-only sr-only-focusable" href="#content">Skip navigation</a>
 
     <!-- Docs master nav -->
-    {% include nav-main.html %}
+    {% include nav/nav-main.html %}
 
     <!-- Page content of course! -->
     {{ content }}
 
-    <!-- Footer plus JS and analytics. -->
     {% include footer.html %}
-
   </body>
 </html>
