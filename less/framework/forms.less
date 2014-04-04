@@ -73,7 +73,7 @@ input {
 
 input[type="checkbox"],
 input[type="radio"] {
-  .box-sizing(border-box); // 1
+  box-sizing: border-box; // 1
   padding: 0; // 2
   margin: 4px 0 0;
   margin-top: 1px \9; // IE8-9
@@ -92,7 +92,7 @@ input[type="number"]::-webkit-outer-spin-button {
 // 1. Address `appearance` set to `searchfield` in Safari and Chrome. (nm v3.0.1)
 
 input[type="search"] {
-  .box-sizing(border-box); // Override content-box (* isn't specific enough)
+  box-sizing: border-box; // Override content-box (* isn't specific enough)
   -webkit-appearance: textfield; // 1
 }
 
@@ -226,8 +226,8 @@ output {
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid @input-border;
   .border-radius(@input-border-radius);
-  .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
-  .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 
   // Customize the `:focus` state to imitate native WebKit styles.
   .form-control-focus();

@@ -20,7 +20,7 @@
   border: 1px solid transparent;
   .border-radius(@btn-border-radius);
   white-space: nowrap;
-  .user-select(none);
+  user-select: none;
 
   &,
   &:active,
@@ -40,7 +40,7 @@
   &.active {
     outline: 0;
     background-image: none;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
   }
 
   &.disabled,
@@ -48,8 +48,8 @@
   fieldset[disabled] & {
     cursor: not-allowed;
     pointer-events: none; // Future-proof disabling of clicks
-    .opacity(.65);
-    .box-shadow(none);
+    opacity: .65;
+    box-shadow: none;
   }
 }
 
@@ -104,7 +104,7 @@
   &[disabled],
   fieldset[disabled] & {
     background-color: transparent;
-    .box-shadow(none);
+    box-shadow: none;
   }
   &,
   &:hover,

@@ -1,6 +1,6 @@
 // Vendor Prefixes
 //
-// All vendor mixins are deprecated as of v2.0.6 due to the introduction of
+// All vendor mixins are depreciated as of v2.0.6 due to the introduction of
 // Autoprefixer in our Gruntfile. They will be removed in v3.
 
 // - Animations
@@ -95,14 +95,6 @@
       -ms-hyphens: @mode; // IE10+
        -o-hyphens: @mode;
           hyphens: @mode;
-}
-
-// Placeholder text
-.placeholder(@color: @input-color-placeholder) {
-  &::-moz-placeholder           { color: @color;   // Firefox
-                                  opacity: 1; } // See https://github.com/twbs/bootstrap/pull/11526
-  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
-  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
 }
 
 // Transformations
