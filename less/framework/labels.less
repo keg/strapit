@@ -47,36 +47,12 @@
 // Colors
 // Contextual variations (linked labels get darker on :hover)
 
-
-.label-default,
-.label.default {
-  .label-variant(@label-default-bg);
-}
-
-.label-primary,
-.label.primary {
-  .label-variant(@label-primary-bg);
-}
-
-.label-success,
-.label.success {
-  .label-variant(@label-success-bg);
-}
-
-.label-info,
-.label.info {
-  .label-variant(@label-info-bg);
-}
-
-.label-warning,
-.label.warning {
-  .label-variant(@label-warning-bg);
-}
-
-.label-danger,
-.label.danger {
-  .label-variant(@label-danger-bg);
-}
+.label-variant(default; @label-default-bg);
+.label-variant(primary; @label-primary-bg);
+.label-variant(success; @label-success-bg);
+.label-variant(info; @label-info-bg);
+.label-variant(warning; @label-warning-bg);
+.label-variant(danger; @label-danger-bg);
 
 .label-rounded,
 .label.rounded {
@@ -89,4 +65,3 @@
     border: 1px solid #000;
   }
 }
-

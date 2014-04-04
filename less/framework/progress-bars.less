@@ -80,23 +80,7 @@
 
 // Variations
 // -------------------------
-
-.progress-bar-success,
-.progress-bar.success {
-  .progress-bar-variant(@progress-bar-success-bg);
-}
-
-.progress-bar-info,
-.progress-bar.info {
-  .progress-bar-variant(@progress-bar-info-bg);
-}
-
-.progress-bar-warning,
-.progress-bar.warning {
-  .progress-bar-variant(@progress-bar-warning-bg);
-}
-
-.progress-bar-danger,
-.progress-bar.danger {
-  .progress-bar-variant(@progress-bar-danger-bg);
-}
+.progress-bar-variant(success; @progress-bar-success-bg);
+.progress-bar-variant(info; @progress-bar-info-bg);
+.progress-bar-variant(warning; @progress-bar-warning-bg);
+.progress-bar-variant(danger; @progress-bar-danger-bg);
