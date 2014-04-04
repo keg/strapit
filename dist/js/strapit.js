@@ -775,7 +775,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
 
 }(jQuery);
 /* ===========================================================
- * Bootstrap: fileinput.js v3.1.0
+ * Bootstrap: fileinput.js v3.1.1
  * http://jasny.github.com/bootstrap/javascript/#fileinput
  * ===========================================================
  * Copyright 2012-2014 Arnold Daniels
@@ -836,24 +836,30 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
   },
 
   Fileinput.prototype.change = function(e) {
-    if (e.target.files === undefined) e.target.files = e.target && e.target.value ? [ {name: e.target.value.replace(/^.+\\/, '')} ] : []
-    if (e.target.files.length === 0) return
+    var files = e.target.files === undefined ? (e.target && e.target.value ? [{ name: e.target.value.replace(/^.+\\/, '')}] : []) : e.target.files
+    
+    e.stopPropagation()
+
+    if (files.length === 0) {
+      this.clear()
+      return
+    }
 
     this.$hidden.val('')
     this.$hidden.attr('name', '')
     this.$input.attr('name', this.name)
 
-    var file = e.target.files[0]
+    var file = files[0]
 
-    if (this.$preview.length > 0 && (typeof file.type !== "undefined" ? file.type.match('image.*') : file.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader !== "undefined") {
+    if (this.$preview.length > 0 && (typeof file.type !== "undefined" ? file.type.match(/^image\/(gif|png|jpeg)$/) : file.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader !== "undefined") {
       var reader = new FileReader()
       var preview = this.$preview
       var element = this.$element
 
       reader.onload = function(re) {
-        var $img = $('<img>') // .attr('src', re.target.result)
+        var $img = $('<img>')
         $img[0].src = re.target.result
-        e.target.files[0].result = re.target.result
+        files[0].result = re.target.result
         
         element.find('.fileinput-filename').text(file.name)
         
@@ -863,7 +869,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
         preview.html($img)
         element.addClass('fileinput-exists').removeClass('fileinput-new')
 
-        element.trigger('change.bs.fileinput', e.target.files)
+        element.trigger('change.bs.fileinput', files)
       }
 
       reader.readAsDataURL(file)
@@ -1597,10 +1603,8 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
 
 }(jQuery);
 /* ========================================================================
- * Bootstrap: offcanvas.js v3.1.0
+ * Bootstrap: offcanvas.js v3.1.1
  * http://jasny.github.io/bootstrap/javascript/#offcanvas
- * 
- * Based on Boostrap collapse.js by Twitter, Inc. 
  * ========================================================================
  * Copyright 2013-2014 Arnold Daniels
  *
@@ -1626,6 +1630,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     this.$element = $(element)
     this.options  = $.extend({}, OffCanvas.DEFAULTS, options)
     this.state    = null
+    this.placement = null
     
     if (this.options.recalc) {
       this.calcClone()
@@ -1640,13 +1645,14 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
 
   OffCanvas.DEFAULTS = {
     toggle: true,
-    placement: 'left',
+    placement: 'auto',
     autohide: true,
-    recalc: true
+    recalc: true,
+    disableScrolling: true
   }
 
   OffCanvas.prototype.offset = function () {
-    switch (this.options.placement) {
+    switch (this.placement) {
       case 'left':
       case 'right':  return this.$element.outerWidth()
       case 'top':
@@ -1655,26 +1661,31 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
   }
   
   OffCanvas.prototype.calcPlacement = function () {
-    var horizontal = $(window).width() / this.$element.width(),
-        vertical = $(window).height() / this.$element.height()
-        
+    if (this.options.placement !== 'auto') {
+        this.placement = this.options.placement
+        return
+    }
+    
     if (!this.$element.hasClass('in')) {
       this.$element.css('visiblity', 'hidden !important').addClass('in')
     } 
     
+    var horizontal = $(window).width() / this.$element.width()
+    var vertical = $(window).height() / this.$element.height()
+        
     var element = this.$element
     function ab(a, b) {
       if (element.css(b) === 'auto') return a
       if (element.css(a) === 'auto') return b
       
-      var size_a = parseInt(element.css(a), 10),
-          size_b = parseInt(element.css(b), 10)
+      var size_a = parseInt(element.css(a), 10)
+      var size_b = parseInt(element.css(b), 10)
   
       return size_a > size_b ? b : a
     }
     
-    this.options.placement = horizontal > vertical ? ab('left', 'right') : ab('top', 'bottom')
-    
+    this.placement = horizontal >= vertical ? ab('left', 'right') : ab('top', 'bottom')
+      
     if (this.$element.css('visibility') === 'hidden !important') {
       this.$element.removeClass('in').css('visiblity', '')
     }
@@ -1704,12 +1715,12 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     // Use jQuery animation if CSS transitions aren't supported
     if (!$.support.transition) {
       var anim = {}
-      anim[this.options.placement] = "+=" + offset
+      anim[this.placement] = "+=" + offset
       return elements.animate(anim, 350, callback)
     }
 
-    var placement = this.options.placement,
-        opposite = this.opposite(placement)
+    var placement = this.placement
+    var opposite = this.opposite(placement)
     
     elements.each(function() {
       if ($(this).css(placement) !== 'auto')
@@ -1726,7 +1737,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
 
   OffCanvas.prototype.disableScrolling = function() {
     var bodyWidth = $('body').width()
-    var prop = 'padding-' + this.opposite(this.options.placement)
+    var prop = 'padding-' + this.opposite(this.placement)
 
     if ($('body').data('offcanvas-style') === undefined) $('body').data('offcanvas-style', $('body').attr('style'))
     
@@ -1748,17 +1759,22 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
-    if (this.options.placement === 'auto') this.calcPlacement()
-
-    this.state = 'sliding'
-
+    this.state = 'slide-in'
+    this.calcPlacement();
+    
     var elements = this.getCanvasElements()
-    var offset = this.offset(),
-        placement = this.options.placement,
-        opposite = this.opposite(placement)
+    var placement = this.placement
+    var opposite = this.opposite(placement)
+    var offset = this.offset()
+
+    if (elements.index(this.$element) !== -1) {
+      $(this.$element).data('offcanvas-style', $(this.$element).attr('style') || '')
+      this.$element.css(placement, -1 * offset)
+      this.$element.css(placement); // Workaround: Need to get the CSS property for it to be applied before the next line of code
+    }
 
     elements.addClass('canvas-sliding').each(function() {
-      $(this).data('offcanvas-style', $(this).attr('style') || '')
+      if ($(this).data('offcanvas-style') === undefined) $(this).data('offcanvas-style', $(this).attr('style') || '')
       if ($(this).css('position') === 'static') $(this).css('position', 'relative')
       if (($(this).css(placement) === 'auto' || $(this).css(placement) === '0px') &&
           ($(this).css(opposite) === 'auto' || $(this).css(opposite) === '0px')) {
@@ -1766,11 +1782,11 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
       }
     })
     
-    if (elements.index(this.$element) !== -1) this.$element.css(placement, -1 * offset)
-
-    this.disableScrolling()
+    if (this.options.disableScrolling) this.disableScrolling()
     
     var complete = function () {
+      if (this.state != 'slide-in') return
+      
       this.state = 'slid'
 
       elements.removeClass('canvas-sliding').addClass('canvas-slid')
@@ -1790,18 +1806,22 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
-    this.state = 'sliding'
+    this.state = 'slide-out'
 
     var elements = $('.canvas-slid')
+    var placement = this.placement
     var offset = -1 * this.offset()
 
     var complete = function () {
+      if (this.state != 'slide-out') return
+      
       this.state = null
-
+      this.placement = null
+      
       this.$element.removeClass('in')
       
       elements.removeClass('canvas-sliding')
-      elements.add('body').each(function() {
+      elements.add(this.$element).add('body').each(function() {
         $(this).attr('style', $(this).data('offcanvas-style')).removeData('offcanvas-style')
       })
 
@@ -1816,7 +1836,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
   }
 
   OffCanvas.prototype.toggle = function () {
-    if (this.state === 'sliding') return
+    if (this.state === 'slide-in' || this.state === 'slide-out') return
     this[this.state === 'slid' ? 'hide' : 'show']()
   }
 
@@ -1828,17 +1848,18 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
   }
 
   OffCanvas.prototype.recalc = function () {
-    if (this.state() !== 'slid' || this.$calcClone.css('display') === 'none') return
+    if (this.$calcClone.css('display') === 'none' || (this.state !== 'slid' && this.state !== 'slide-in')) return
     
-    var offset = -1 * this.offset()
+    this.state = null
+    this.placement = null
+    var elements = this.getCanvasElements()
     
-    var placement = this.options.placement
-    this.getCanvasElements().each(function() {
-      $(this).css(placement, (parseInt($(this).css(placement), 10) || 0) + offset)
-    }).removeClass('canvas-slid')
+    this.$element.removeClass('in')
     
-    $('body').css('overflow', '')
-    this.$element.css(placement, '').removeClass('in canvas-slid')
+    elements.removeClass('canvas-slid')
+    elements.add(this.$element).add('body').each(function() {
+      $(this).attr('style', $(this).data('offcanvas-style')).removeData('offcanvas-style')
+    })
   }
   
   OffCanvas.prototype.autohide = function (e) {
@@ -1854,10 +1875,10 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.offcanvas')
-      var options = $.extend({}, OffCanvas.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, OffCanvas.DEFAULTS, $this.data(), typeof option === 'object' && option)
 
       if (!data) $this.data('bs.offcanvas', (data = new OffCanvas(this, options)))
-      if (typeof option == 'string') data[option]()
+      if (typeof option === 'string') data[option]()
     })
   }
 
@@ -1892,7 +1913,6 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap Javascript requi
   })
 
 }(window.jQuery);
-
 /* ========================================================================
  * Bootstrap: tooltip.js v3.1.1
  * http://getbootstrap.com/javascript/#tooltip

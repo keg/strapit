@@ -1,5 +1,5 @@
 /* ===========================================================
- * Bootstrap: fileinput.js v3.1.0
+ * Bootstrap: fileinput.js v3.1.1
  * http://jasny.github.com/bootstrap/javascript/#fileinput
  * ===========================================================
  * Copyright 2012-2014 Arnold Daniels
@@ -60,24 +60,30 @@
   },
 
   Fileinput.prototype.change = function(e) {
-    if (e.target.files === undefined) e.target.files = e.target && e.target.value ? [ {name: e.target.value.replace(/^.+\\/, '')} ] : []
-    if (e.target.files.length === 0) return
+    var files = e.target.files === undefined ? (e.target && e.target.value ? [{ name: e.target.value.replace(/^.+\\/, '')}] : []) : e.target.files
+    
+    e.stopPropagation()
+
+    if (files.length === 0) {
+      this.clear()
+      return
+    }
 
     this.$hidden.val('')
     this.$hidden.attr('name', '')
     this.$input.attr('name', this.name)
 
-    var file = e.target.files[0]
+    var file = files[0]
 
-    if (this.$preview.length > 0 && (typeof file.type !== "undefined" ? file.type.match('image.*') : file.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader !== "undefined") {
+    if (this.$preview.length > 0 && (typeof file.type !== "undefined" ? file.type.match(/^image\/(gif|png|jpeg)$/) : file.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader !== "undefined") {
       var reader = new FileReader()
       var preview = this.$preview
       var element = this.$element
 
       reader.onload = function(re) {
-        var $img = $('<img>') // .attr('src', re.target.result)
+        var $img = $('<img>')
         $img[0].src = re.target.result
-        e.target.files[0].result = re.target.result
+        files[0].result = re.target.result
         
         element.find('.fileinput-filename').text(file.name)
         
@@ -87,7 +93,7 @@
         preview.html($img)
         element.addClass('fileinput-exists').removeClass('fileinput-new')
 
-        element.trigger('change.bs.fileinput', e.target.files)
+        element.trigger('change.bs.fileinput', files)
       }
 
       reader.readAsDataURL(file)
