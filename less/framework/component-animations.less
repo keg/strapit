@@ -17,7 +17,7 @@
 }
 
 .fade-back {
-  opacity: .5; // change this to var
+  opacity: @fade-back-max-opacity; 
   transition: opacity .15s linear;
   &.in {
     opacity: 1;
