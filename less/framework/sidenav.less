@@ -9,7 +9,8 @@
 // Provide a static sidenav from which we expand to create the fixed sidenav
 // variations.
 
-.sidenav {
+.sidenav,
+.navbar-offcanvas {
   width: @sidenav-width;
   height: 100%;
   border: 1px solid @sidenav-default-border;
@@ -18,19 +19,27 @@
 .sidenav-fixed-left,
 .sidenav-fixed-right,
 .sidenav.fixed-left,
-.sidenav.fixed-right {
+.sidenav.fixed-right,
+.navbar-offcanvas {
   position: fixed;
   z-index: @zindex-sidenav-fixed;
   top: 0;
   border-radius: 0;
 }
 .sidenav-fixed-left,
-.sidenav.fixed-left {
+.sidenav.fixed-left,
+.navbar-offcanvas.sidenav-fixed-left,
+.navbar-offcanvas.sidenav.fixed-left {
   left: 0;
+  right: auto;
   border-width: 0 1px 0 0;
+  bottom: 0;
+  overflow-y: auto;
 }
 .sidenav-fixed-right,
-.sidenav.fixed-right {
+.sidenav.fixed-right,
+.navbar-offcanvas {
+  left: auto;
   right: 0;
   border-width: 0 0 0 1px;
 }
@@ -46,6 +55,38 @@
     border: none;
     box-shadow: none;
     border-radius: 0;
+  }
+}
+
+.navbar-offcanvas {
+  .navbar-nav {
+    margin: 0;
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+
+    &.offcanvas {
+      position: static;
+      display: block !important;
+      height: auto !important;
+      padding-bottom: 0; // Override default setting
+      overflow: visible !important;
+    }
+
+    // Account for first and last children spacing
+    .navbar-nav.navbar-left:first-child {
+      margin-left: -@navbar-padding-horizontal;
+    }
+    .navbar-nav.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal;
+    }
+
+    .navmenu-brand {
+      display: none;
+    }
   }
 }
 
@@ -68,7 +109,9 @@
 
 // Default sidenav
 .sidenav-default,
-.sidenav.default {
+.sidenav.default,
+.sidenav-default .navbar-offcanvas,
+.sidenav.default .navbar-offcanvas {
   background-color: @sidenav-default-bg;
   border-color: @sidenav-default-border;
 
@@ -153,7 +196,9 @@
 
 // Inverse sidenav
 .sidenav-inverse,
-.sidenav.inverse {
+.sidenav.inverse,
+.sidenav-inverse .navbar-offcanvas,
+.sidenav.inverse .navbar-offcanvas {
   background-color: @sidenav-inverse-bg;
   border-color: @sidenav-inverse-border;
 
