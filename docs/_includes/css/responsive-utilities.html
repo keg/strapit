@@ -8,7 +8,12 @@
 
     <h2 id="responsive-utilities-classes">Available classes</h2>
     <p>Use a single or combination of the available classes for toggling content across viewport breakpoints.</p>
-<div class="table-responsive-example">
+     <div class="callout danger" id="responsive-utilites-display-none">
+       <h4>Problems with display states</h4>
+       <p>To cover alternate display types such as <code>table</code> and <code>table-cell</code>, the <code>.visible-*</code> classes are set to <code>display: inherit</code> rather than <code>display: block</code>. This is to preserve those alternate display-states.</p>
+       <p>However, what this means, that <strong>if your element is initially set to </strong><code>display: none</code><strong>, the </strong><code>visible-*</code> <strong>class will inherit that state and will not display.</strong> Until we can find a better solution, we recommend you avoid using <code>display: none</code> as your initial value and instead add that state in a modifier class (e.g. <code>.hidden</code>) to achieve the same result, and then remove that class via Javascript if need be. It's a little hacky, but that's the best solution we have for now.</p>
+     </div>
+     <div class="table-responsive-example">
       <table class="table bordered striped responsive-utilities">
         <thead>
           <tr>
