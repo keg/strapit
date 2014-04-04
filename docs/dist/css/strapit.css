@@ -2572,6 +2572,7 @@ table th.col {
   }
 }
 .table-responsive {
+  position: relative;
   width: 100%;
   margin-bottom: 16.5px;
   overflow-x: scroll;
@@ -8188,7 +8189,6 @@ button.close {
   0% {
     opacity: 0;
     -webkit-transform: scale(0);
-        -ms-transform: scale(0);
          -o-transform: scale(0);
             transform: scale(0);
   }
@@ -8198,7 +8198,6 @@ button.close {
   100% {
     opacity: 0;
     -webkit-transform: scale(1);
-        -ms-transform: scale(1);
          -o-transform: scale(1);
             transform: scale(1);
   }
