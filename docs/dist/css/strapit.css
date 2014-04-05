@@ -5516,7 +5516,7 @@ fieldset[disabled] .navbar.inverse .btn-link:focus {
   .navbar-offcanvas .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
   }
-  .navbar-offcanvas .navmenu-brand {
+  .navbar-offcanvas .sidenav-brand {
     display: none;
   }
 }
@@ -5533,152 +5533,124 @@ fieldset[disabled] .navbar.inverse .btn-link:focus {
 }
 .sidenav-default,
 .sidenav.default,
-.sidenav-default .navbar-offcanvas,
-.sidenav.default .navbar-offcanvas {
+.navbar-offcanvas {
   background-color: #f8f8f8;
   border-color: #e7e7e7;
 }
 .sidenav-default .sidenav-brand,
 .sidenav.default .sidenav-brand,
-.sidenav-default .navbar-offcanvas .sidenav-brand,
-.sidenav.default .navbar-offcanvas .sidenav-brand {
+.navbar-offcanvas .sidenav-brand {
   color: #777;
 }
 .sidenav-default .sidenav-brand:hover,
 .sidenav.default .sidenav-brand:hover,
-.sidenav-default .navbar-offcanvas .sidenav-brand:hover,
-.sidenav.default .navbar-offcanvas .sidenav-brand:hover,
+.navbar-offcanvas .sidenav-brand:hover,
 .sidenav-default .sidenav-brand:focus,
 .sidenav.default .sidenav-brand:focus,
-.sidenav-default .navbar-offcanvas .sidenav-brand:focus,
-.sidenav.default .navbar-offcanvas .sidenav-brand:focus {
+.navbar-offcanvas .sidenav-brand:focus {
   color: #5e5e5e;
   background-color: transparent;
 }
 .sidenav-default .sidenav-text,
 .sidenav.default .sidenav-text,
-.sidenav-default .navbar-offcanvas .sidenav-text,
-.sidenav.default .navbar-offcanvas .sidenav-text {
+.navbar-offcanvas .sidenav-text {
   color: #777;
 }
 .sidenav-default .sidenav-nav > .dropdown > a:hover .caret,
 .sidenav.default .sidenav-nav > .dropdown > a:hover .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .dropdown > a:hover .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .dropdown > a:hover .caret,
+.navbar-offcanvas .sidenav-nav > .dropdown > a:hover .caret,
 .sidenav-default .sidenav-nav > .dropdown > a:focus .caret,
 .sidenav.default .sidenav-nav > .dropdown > a:focus .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .dropdown > a:focus .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .dropdown > a:focus .caret {
+.navbar-offcanvas .sidenav-nav > .dropdown > a:focus .caret {
   border-top-color: #333;
   border-bottom-color: #333;
 }
 .sidenav-default .sidenav-nav > .open > a,
 .sidenav.default .sidenav-nav > .open > a,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a,
+.navbar-offcanvas .sidenav-nav > .open > a,
 .sidenav-default .sidenav-nav > .open > a:hover,
 .sidenav.default .sidenav-nav > .open > a:hover,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a:hover,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a:hover,
+.navbar-offcanvas .sidenav-nav > .open > a:hover,
 .sidenav-default .sidenav-nav > .open > a:focus,
 .sidenav.default .sidenav-nav > .open > a:focus,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a:focus,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a:focus {
+.navbar-offcanvas .sidenav-nav > .open > a:focus {
   color: #555;
   background-color: #e7e7e7;
 }
 .sidenav-default .sidenav-nav > .open > a .caret,
 .sidenav.default .sidenav-nav > .open > a .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a .caret,
+.navbar-offcanvas .sidenav-nav > .open > a .caret,
 .sidenav-default .sidenav-nav > .open > a:hover .caret,
 .sidenav.default .sidenav-nav > .open > a:hover .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a:hover .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a:hover .caret,
+.navbar-offcanvas .sidenav-nav > .open > a:hover .caret,
 .sidenav-default .sidenav-nav > .open > a:focus .caret,
 .sidenav.default .sidenav-nav > .open > a:focus .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .open > a:focus .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .open > a:focus .caret {
+.navbar-offcanvas .sidenav-nav > .open > a:focus .caret {
   border-top-color: #555;
   border-bottom-color: #555;
 }
 .sidenav-default .sidenav-nav > .dropdown > a .caret,
 .sidenav.default .sidenav-nav > .dropdown > a .caret,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .dropdown > a .caret,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .dropdown > a .caret {
+.navbar-offcanvas .sidenav-nav > .dropdown > a .caret {
   border-top-color: #777;
   border-bottom-color: #777;
 }
 .sidenav-default .sidenav-nav.dropdown-menu,
 .sidenav.default .sidenav-nav.dropdown-menu,
-.sidenav-default .navbar-offcanvas .sidenav-nav.dropdown-menu,
-.sidenav.default .navbar-offcanvas .sidenav-nav.dropdown-menu {
+.navbar-offcanvas .sidenav-nav.dropdown-menu {
   background-color: #e7e7e7;
 }
 .sidenav-default .sidenav-nav.dropdown-menu > .divider,
 .sidenav.default .sidenav-nav.dropdown-menu > .divider,
-.sidenav-default .navbar-offcanvas .sidenav-nav.dropdown-menu > .divider,
-.sidenav.default .navbar-offcanvas .sidenav-nav.dropdown-menu > .divider {
+.navbar-offcanvas .sidenav-nav.dropdown-menu > .divider {
   background-color: #f8f8f8;
 }
 .sidenav-default .sidenav-nav.dropdown-menu > .active > a,
 .sidenav.default .sidenav-nav.dropdown-menu > .active > a,
-.sidenav-default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a,
-.sidenav.default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a,
+.navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a,
 .sidenav-default .sidenav-nav.dropdown-menu > .active > a:hover,
 .sidenav.default .sidenav-nav.dropdown-menu > .active > a:hover,
-.sidenav-default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:hover,
-.sidenav.default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:hover,
+.navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:hover,
 .sidenav-default .sidenav-nav.dropdown-menu > .active > a:focus,
 .sidenav.default .sidenav-nav.dropdown-menu > .active > a:focus,
-.sidenav-default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:focus,
-.sidenav.default .navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:focus {
+.navbar-offcanvas .sidenav-nav.dropdown-menu > .active > a:focus {
   background-color: #d7d7d7;
 }
 .sidenav-default .sidenav-nav > li > a,
 .sidenav.default .sidenav-nav > li > a,
-.sidenav-default .navbar-offcanvas .sidenav-nav > li > a,
-.sidenav.default .navbar-offcanvas .sidenav-nav > li > a {
+.navbar-offcanvas .sidenav-nav > li > a {
   color: #777;
 }
 .sidenav-default .sidenav-nav > li > a:hover,
 .sidenav.default .sidenav-nav > li > a:hover,
-.sidenav-default .navbar-offcanvas .sidenav-nav > li > a:hover,
-.sidenav.default .navbar-offcanvas .sidenav-nav > li > a:hover,
+.navbar-offcanvas .sidenav-nav > li > a:hover,
 .sidenav-default .sidenav-nav > li > a:focus,
 .sidenav.default .sidenav-nav > li > a:focus,
-.sidenav-default .navbar-offcanvas .sidenav-nav > li > a:focus,
-.sidenav.default .navbar-offcanvas .sidenav-nav > li > a:focus {
+.navbar-offcanvas .sidenav-nav > li > a:focus {
   color: #333;
   background-color: #f0f0f0;
 }
 .sidenav-default .sidenav-nav > .active > a,
 .sidenav.default .sidenav-nav > .active > a,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .active > a,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .active > a,
+.navbar-offcanvas .sidenav-nav > .active > a,
 .sidenav-default .sidenav-nav > .active > a:hover,
 .sidenav.default .sidenav-nav > .active > a:hover,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .active > a:hover,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .active > a:hover,
+.navbar-offcanvas .sidenav-nav > .active > a:hover,
 .sidenav-default .sidenav-nav > .active > a:focus,
 .sidenav.default .sidenav-nav > .active > a:focus,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .active > a:focus,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .active > a:focus {
+.navbar-offcanvas .sidenav-nav > .active > a:focus {
   color: #555;
   background-color: #e7e7e7;
 }
 .sidenav-default .sidenav-nav > .disabled > a,
 .sidenav.default .sidenav-nav > .disabled > a,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .disabled > a,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .disabled > a,
+.navbar-offcanvas .sidenav-nav > .disabled > a,
 .sidenav-default .sidenav-nav > .disabled > a:hover,
 .sidenav.default .sidenav-nav > .disabled > a:hover,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .disabled > a:hover,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .disabled > a:hover,
+.navbar-offcanvas .sidenav-nav > .disabled > a:hover,
 .sidenav-default .sidenav-nav > .disabled > a:focus,
 .sidenav.default .sidenav-nav > .disabled > a:focus,
-.sidenav-default .navbar-offcanvas .sidenav-nav > .disabled > a:focus,
-.sidenav.default .navbar-offcanvas .sidenav-nav > .disabled > a:focus {
+.navbar-offcanvas .sidenav-nav > .disabled > a:focus {
   color: #ccc;
   background-color: transparent;
 }
