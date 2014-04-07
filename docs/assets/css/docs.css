@@ -952,6 +952,12 @@ h1[id] {
   border-bottom: 0;
 }
 
+#carousel-example-generic,
+#carousel-example-captions {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 /*
  * Color swatches
  *
