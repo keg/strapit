@@ -19,7 +19,7 @@ However, Foundation is really strong with its additional Javascript offerings. A
 
 ## Documentation
 
-Strapit's documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted at [http://sandbox.digitalfirstmedia.com/strapit/](http://sandbox.digitalfirstmedia.com/strapit/). The docs may also be run locally.
+Strapit's documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted at [http://dfmlabs.github.io/strapit/](http://dfmlabs.github.io/strapit/). The docs may also be run locally.
 
 ### Running documentation locally
 
