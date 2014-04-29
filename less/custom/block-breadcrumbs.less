@@ -3,11 +3,12 @@
 // Custom component created by Jonathan Boho for DFM
 // --------------------------------------------------
 
-.breadcrumb-block {
+.breadcrumb-block,
+.breadcrumb.block {
   padding: 0;
   margin: 0 0 @line-height-computed; // overide default margin if there
   list-style: none; // overide default list styles if there
-  background-color: @breadcrumb-bg;
+  background-color: transparent;
   > li {
     .font-size(@font-size-base);
     margin: 0 4px 0 0;
@@ -17,36 +18,36 @@
       border-left: 7px solid #fff;
       border-top: 18px solid transparent;
       border-bottom: 18px solid transparent;
-      content: "";
+      content: '';
       position: absolute;
       top: -8px;
     }
     &:after {
       padding: 0;
       content: none;
-      border-left: 8px solid @border-color;
+      border-left: 8px solid @block-breadcrumb-bg;
     }
     a {
-      background: @border-color;
+      background: @block-breadcrumb-bg;
       line-height: @line-height-computed!important;
       padding: 10px 14px 10px 20px;
-      .transition(none);
+      transition: none;
       &:after {
         width: 0;
         height: 0;
-        border-left: 8px solid @border-color;
+        border-left: 8px solid @block-breadcrumb-bg;
         border-top: 18px solid transparent;
         border-bottom: 18px solid transparent;
-        content: "";
+        content: '';
         position: absolute;
         right: -8px;
         top: -6px;
       }
       &:hover {
-        background: darken(@border-color, 10%);
+        background: @block-breadcrumb-bg-hover;
         text-decoration: none;
         &:after {
-          border-left: 8px solid darken(@border-color, 10%);
+          border-left-color: @block-breadcrumb-bg-hover;
         }
       }
     }
@@ -67,8 +68,8 @@
   }
 }
 
-.breadcrumb-block-sm,
-.breadcrumb-block.sm {
+.breadcrumb-block.sm,
+.breadcrumb.block.sm {
   > li {
     .font-size((@font-size-base - 2));
     margin: 0 3px 0 0;

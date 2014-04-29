@@ -33,7 +33,8 @@ body {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
-  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -47,8 +48,8 @@ body {
   vertical-align: top;
 }
 .cover-container {
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }
 
 /* Padding for spacing */
@@ -72,8 +73,8 @@ body {
   margin-left: 20px;
 }
 .masthead-nav > li > a {
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
   font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
@@ -83,6 +84,7 @@ body {
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
+  border-bottom-color: #d7d7d7;
   border-bottom-color: rgba(255,255,255,.25);
 }
 .masthead-nav > .active > a,

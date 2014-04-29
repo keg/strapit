@@ -48,7 +48,6 @@
 // content for the user's viewport.
 
 .navbar-collapse {
-  max-height: 340px;
   overflow-x: visible;
   padding-right: @navbar-padding-horizontal;
   padding-left:  @navbar-padding-horizontal;
@@ -87,6 +86,19 @@
     .navbar.fixed-bottom & {
       padding-left: 0;
       padding-right: 0;
+    }
+  }
+}
+
+.navbar-fixed-top,
+.navbar.fixed-top,
+.navbar-fixed-bottom,
+.navbar.fixed-bottom {
+  .navbar-collapse {
+    max-height: @navbar-collapse-max-height;
+
+    @media (max-width: @breakpoint-xs) and (orientation: landscape) {
+      max-height: 200px;
     }
   }
 }
@@ -158,9 +170,9 @@
 
 .navbar-brand {
   float: left;
-  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  padding: 0 @navbar-padding-horizontal;
   .font-size(@font-size-large);
-  line-height: @line-height-computed;
+  line-height: @navbar-height;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -200,7 +212,7 @@
   // We remove the `outline` here, but later compensate by attaching `:hover`
   // styles to `:focus`.
   &:focus {
-    outline: none;
+    outline: 0;
   }
 
   // Bars
@@ -296,13 +308,12 @@
 // our navbars.
 
 .navbar-form {
-  margin-left: -@navbar-padding-horizontal;
-  margin-right: -@navbar-padding-horizontal;
+  margin-left: (@navbar-padding-horizontal * -1);
+  margin-right: (@navbar-padding-horizontal * -1);
   padding: 10px @navbar-padding-horizontal;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1);
-  .box-shadow(@shadow);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1);
 
   // Kick in the inline
   // This replaces .form-inline() mixin in orginal bootstrap, whcih kinda sucks
@@ -380,7 +391,7 @@
     margin-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    .box-shadow(none);
+    box-shadow: none;
 
     // Outdent the form if last child to line up with content down the page
     &.navbar-right:last-child {
@@ -568,7 +579,20 @@
       color: @navbar-default-link-hover-color;
     }
   }
-
+  .btn-link {
+    color: @navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: @navbar-default-link-hover-color;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:focus {
+        color: @navbar-default-link-disabled-color;
+      }
+    }
+  }
 }
 
 // Inverse navbar
@@ -690,7 +714,20 @@
       color: @navbar-inverse-link-hover-color;
     }
   }
-
+  .btn-link {
+    color: @navbar-inverse-link-color;
+    &:hover,
+    &:focus {
+      color: @navbar-inverse-link-hover-color;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:focus {
+        color: @navbar-inverse-link-disabled-color;
+      }
+    }
+  }
 }
 
 // Print-only styles

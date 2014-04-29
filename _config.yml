@@ -6,17 +6,17 @@ pygments:         true
 permalink:        pretty
 
 # Server
-source:           ./docs
-destination:      ./_gh_pages
+source:           docs
+destination:      _gh_pages
 host:             0.0.0.0
 port:             9001
 baseurl:          /
 url:              http://localhost:9001
 
 # Custom vars
-current_version:  2.0.3
+current_version:  2.0.7
 repo:             https://github.com/DFMLabs/strapit
 
 download:
   source:         https://github.com/DFMLabs/strapit/archive/master.zip
-  dist:           http://sandbox.digitalfirstmedia.com/strapit/dist/strapit-v2.0.3-dist.zip
+  dist:           http://sandbox.digitalfirstmedia.com/strapit/dist/strapit-v2.0.7-dist.zip

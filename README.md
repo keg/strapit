@@ -3,11 +3,11 @@ Strapit
 
 A CSS framework mashup of Twitter's Bootstrap and ZURB's Foundation.
 
-## Current version: 2.0.3
+## Current version: 2.0.7
 
-Basically, this framework retains the styling and semantics of Bootstrap with the Javascript grid, responsivie utilties and Javascript element ideas coming from Foundation. UI elements of Foundation, e.g. subnavs, switches, and flex-video, have been ported over to the Bootstrap styles. Strapit is still written in LESS and retains Bootstrap's mixins, however, we are considering a SASS version and porting the best of each's mixins into both languages for two distinct versions.
+Basically, this framework retains the styling and semantics of Bootstrap with the Javascript grid, responsive utilities and Javascript element ideas coming from Foundation. UI elements of Foundation, e.g. subnavs, switches, and flex-video, have been ported over to the Bootstrap styles. Strapit is still written in LESS and retains Bootstrap's mixins, however, we are considering a SASS version and porting the best of each's mixins into both languages for two distinct versions.
 
-There are also some original UI elements and typographic conventions scattered throughout. We expect there will soon be more. We also changed some of the semantics in an attempt to reduce overall code. For example: Rather than append a 'btn-primary' class to a 'btn' class, we simply remove the 'btn-' on the former class, so the styling on an element would read <button class="btn primary block lg"> as opposed to <btn class="btn btn-primary btn-block btn-lg">. Maybe we are wrong to do this. Time will tell.
+There are also some original UI elements and typographic conventions scattered throughout. We expect there will soon be more. We also changed some of the semantics in an attempt to reduce overall code. For example: Rather than append a 'btn-primary' class to a 'btn' class, we simply remove the 'btn-' on the former class, so the styling on an element would read ```<button class="btn primary block lg">``` as opposed to ```<btn class="btn btn-primary btn-block btn-lg">```. Maybe we are wrong to do this. Time will tell.
 
 All deviations are detailed in the docs. In addition, we will be keeping up with the issues and updates of both frameworks and adding them to this framework when applicable.
 
@@ -23,7 +23,7 @@ Strapit's documentation, included in this repo in the root directory, is built w
 
 ### Running documentation locally
 
-1. If necessary, [install Jekyll](http://jekyllrb.com/docs/installation) (requires v1.x).
+1. If necessary, [install Jekyll](http://jekyllrb.com/docs/installation) (requires v1.5.x).
   - **Windows users:** Read [this unofficial guide](https://github.com/juthilo/run-jekyll-on-windows/) to get Jekyll up and running without problems. We use Pygments for syntax highlighting, so make sure to read the sections on installing Python and Pygments.
 2. From the root `/bootstrap` directory, run `jekyll serve` in the command line.
   - **Windows users:** While we use Jekyll's `encoding` setting, you might still need to change the command prompt's character encoding ([code page](http://en.wikipedia.org/wiki/Windows_code_page)) to UTF-8 so Jekyll runs without errors. For Ruby 2.0.0, run `chcp 65001` first. For Ruby 1.9.3, you can alternatively do `SET LANG=en_EN.UTF-8`.
@@ -33,7 +33,7 @@ Learn more about using Jekyll by reading its [documentation](http://jekyllrb.com
 
 ## Compiling CSS and JavaScript
 
-Bootstrap uses [Grunt](http://gruntjs.com/) with convenient methods for working with the framework. It's how we compile our code, run tests, and more. To use it, install the required dependencies as directed and then run some Grunt commands.
+Strapit uses [Grunt](http://gruntjs.com/) with convenient methods for working with the framework. It's how we compile our code, run tests, and more. To use it, install the required dependencies as directed and then run some Grunt commands.
 
 ### Install Grunt
 
@@ -44,7 +44,7 @@ From the command line:
 
 When completed, you'll be able to run the various Grunt commands provided from the command line.
 
-**Unfamiliar with `npm`? Don't have node installed?** That's a-okay. npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
+**Unfamiliar with npm? Don't have node installed?** That's a-okay. npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
 
 ### Available Grunt commands
 

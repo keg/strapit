@@ -10,14 +10,13 @@
       //
       // See Getting Started docs for more information
       if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-        var msViewportStyle = document.createElement('style');
+        var msViewportStyle = document.createElement('style')
         msViewportStyle.appendChild(
           document.createTextNode(
             '@-ms-viewport{width:auto!important}'
           )
         );
-        document.querySelector('head').
-          appendChild(msViewportStyle);
+        document.querySelector('head').appendChild(msViewportStyle)
       }
 
     var $window = $(window)
@@ -45,7 +44,7 @@
       $sideBar.affix({
         offset: {
           top: function () {
-            var offsetTop      = $sideBar.offset().top
+            var offsetTop      = 350// $sideBar.offset().top
             var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
             var navOuterHeight = $('.bs-docs-nav').height()
 
@@ -64,7 +63,7 @@
 
     // tooltip demo
     $('.tooltip-demo').tooltip({
-      selector: '[data-toggle=tooltip]',
+      selector: '[data-toggle="tooltip"]',
       container: 'body'
     })
 
@@ -72,13 +71,17 @@
     $('.popover-test').popover()
 
     $('.bs-docs-navbar').tooltip({
-      selector: 'a[data-toggle=tooltip]',
+      selector: 'a[data-toggle="tooltip"]',
       container: '.bs-docs-navbar .nav'
     })
 
     // popover demo
-    $('[data-toggle=popover]')
-      .popover()
+    $('.bs-docs-popover').popover()
+
+    // Popover dismiss on next click
+    $('.bs-docs-popover-dismiss').popover({
+      trigger: 'focus'
+    })
 
     // button state demo
     $('#loading-example-btn')

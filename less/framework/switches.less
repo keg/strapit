@@ -1,7 +1,9 @@
 // Foundation Switches
 // ----------------------------------------
 
-
+[class^="switch"] {
+	position:relative;
+}
 @media only screen {
   .switch {
     background: #fff;
@@ -23,7 +25,7 @@
       padding: 0 @padding-base-horizontal;
       line-height: @switch-height;
       .font-size(@font-size-small);
-      .transition(all 0.1s ease-out);
+      transition: all 0.1s ease-out;
     }
     input {
       display: block !important;
@@ -32,7 +34,7 @@
       z-index: 3;
       width: 100%;
       height: 100%;
-      .opacity(0);
+      opacity: 0;
       -moz-appearance: none;
       &:hover,
       &:focus {
@@ -42,7 +44,7 @@
         display: none !important;
       }
       &:not(:checked) + label {
-        .opacity(0); 
+        opacity: 0; 
       }
       &:first-of-type + label,
       &:first-of-type + span + label {
@@ -50,7 +52,7 @@
       }
       &:first-of-type:checked + label,
       &:first-of-type:checked + span + label {
-        left: 0%; 
+        left: 0; 
       }
       &:last-of-type + label,
       &:last-of-type + span + label {
@@ -60,12 +62,12 @@
       }
       &:last-of-type:checked + label,
       &:last-of-type:checked + span + label {
-        right: 0%;
+        right: 0;
         left: auto;
       }
       &:first-of-type:checked ~ span:last-child {
         left: 100%;
-        margin-left: -(@switch-height + 2); 
+        margin-left: ((@switch-height + 2) * -1); 
       }
     }
     span {
@@ -78,8 +80,8 @@
         display: block;
         padding: 0;
         border: 1px solid darken(@border-color, 10%);
-        .transition(all 0.1s ease-out);
-        .box-shadow(~'2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #e1f5d1, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px #f5f5f5');
+        transition: all 0.1s ease-out;
+        box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #e1f5d1, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px #f5f5f5;
       }
     }
     &:active {
@@ -93,18 +95,18 @@
     label {
       padding: 0 @padding-base-horizontal;
       line-height: (@switch-height * .75);
-      .font-size(@font-size-small * .8);
+      .font-size((@font-size-small * .8));
     }
     input {
       &:first-of-type:checked ~ span:last-child {
-        margin-left: -(@switch-height * .75) + 2; 
+        margin-left: (((@switch-height * .75) + 2) * -1); 
       }
     }
     span {
       &:last-child {
         .border-radius(@border-radius-base);
-        width: (@switch-height * .75) - 2;
-        height: (@switch-height * .75) - 2;
+        width: ((@switch-height * .75) - 2);
+        height: ((@switch-height * .75) - 2);
       }
     }
   }
@@ -114,19 +116,19 @@
     height: (@switch-height * 1.5);
     label {
       padding: 0 @padding-base-horizontal;
-      line-height: (@switch-height * 1.5) - 2;
+      line-height: ((@switch-height * 1.5) - 2);
       .font-size(@font-size-base);
     }
     input {
       &:first-of-type:checked ~ span:last-child {
-        margin-left: -(@switch-height * 1.5) + 2; 
+        margin-left: (((@switch-height * 1.5) + 2) * -1); 
       }
     }
     span {
       &:last-child {
         .border-radius(@border-radius-large);
-        width: (@switch-height * 1.5) - 2;
-        height: (@switch-height * 1.5) - 2;
+        width: ((@switch-height * 1.5) - 2);
+        height: ((@switch-height * 1.5) - 2);
       }
     }
   }

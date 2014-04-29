@@ -1,0 +1,11 @@
+// Progress bars
+
+.progress-bar-variant(@state; @color) {
+  .progress-bar-@{state},
+  .progress-bar.@{state} {
+    background-color: @color;
+    .progress-striped & {
+      #gradient > .striped();
+    }
+  }
+}

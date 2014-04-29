@@ -1,0 +1,82 @@
+ <!-- Responsive tables :: Javascript
+  ================================================== -->
+  <div class="bs-docs-section">
+    <h1 id="rtables" class="page-header">Responsive tables <small>responsive-tables.js</small></h1>
+
+    <h2 id="rtables-examples">Example</h2>
+    <p>This Javascript solution allows tables to shrink on small devices without sacrificing the value of tables — comparison of columns — with just a small modification to our table markup. CSS applies the requisite positioning and overflow styles to make the new elements work.</p>
+
+  <div class="bs-example">
+    <div class="table-responsive js">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+            <th>Header 4</th>
+            <th>Header 5</th>
+            <th>Header 6</th>
+            <th>Header 7</th>
+            <th>Header 8</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>row 1, cell 1</td>
+            <td>row 1, cell 2</td>
+            <td>row 1, cell 3</td>
+            <td>row 1, cell 4</td>
+            <td>row 1, cell 5</td>
+            <td>row 1, cell 6</td>
+            <td>row 1, cell 7</td>
+            <td>row 1, cell 8</td>
+          </tr>
+          <tr>
+            <td>row 2, cell 1</td>
+            <td>row 2, cell 2</td>
+            <td>row 2, cell 3</td>
+            <td>row 2, cell 4</td>
+            <td>row 2, cell 5</td>
+            <td>row 2, cell 6</td>
+            <td>row 2, cell 7</td>
+            <td>row 2, cell 8</td>
+          </tr>
+          <tr>
+            <td>row 3, cell 1</td>
+            <td>row 3, cell 2</td>
+            <td>row 3, cell 3</td>
+            <td>row 3, cell 4</td>
+            <td>row 3, cell 5</td>
+            <td>row 3, cell 6</td>
+            <td>row 3, cell 7</td>
+            <td>row 3, cell 8</td>
+          </tr>
+          <tr>
+            <td>row 4, cell 1</td>
+            <td>row 4, cell 2</td>
+            <td>row 4, cell 3</td>
+            <td>row 4, cell 4</td>
+            <td>row 4, cell 5</td>
+            <td>row 4, cell 6</td>
+            <td>row 4, cell 7</td>
+            <td>row 4, cell 8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div><!-- /example -->
+{% highlight html %}
+<div class="table-responsive js">
+  <table class="table">
+    ...
+  </table>
+</div>
+{% endhighlight %}
+
+    <hr class="bs-docs-separator">
+
+    <h2 id="rtables-usage">Usage</h2>
+	<p>Add the class <code>.js</code> to the <code>.table-responsive</code> wrapper to trigger the plugin.</p>
+	
+  </div>

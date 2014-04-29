@@ -4,6 +4,7 @@
 // by enabling horizontal scrolling.
 
 .table-responsive {
+  position: relative;
   width: 100%;
   margin-bottom: (@line-height-computed * 0.75);
   overflow-y: hidden;
@@ -71,7 +72,7 @@
   overflow-y: visible;
   overflow-x: visible;
   .pinned { 
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: @responsive-cell-width;

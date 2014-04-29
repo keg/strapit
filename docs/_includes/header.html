@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Strapit: A CSS framework mashup of Twitter's Bootstrap and ZURB's Foundation.">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors in addition to the ZURB Foundation crew and the DFM UX/UI team">
 <title>
@@ -10,23 +10,24 @@
   {% endif %}
 </title>
 
+<!-- Modernizr for touch detection and IE8 support of HTML5 elements -->
+<script src="https://oss.maxcdn.com/libs/modernizr/2.7.1/modernizr.min.js"></script>
+
+<!-- Selectivizr and Respond.js IE8 support of CSS3 pseudo-selectors and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
 <!-- Strapit core CSS -->
 <link href="{{ site.baseurl }}dist/css/strapit.css" rel="stylesheet">
 
 <!-- Documentation extras -->
-<link href="{{ site.baseurl }}assets/css/docs.css" rel="stylesheet">
-<link href="{{ site.baseurl }}assets/css/pygments-manni.css" rel="stylesheet">
-
-<!-- Modernizr for touch detection and IE support of HTML5 elements -->
-<script src="{{ site.baseurl }}assets/js/modernizr.js"></script>
-<!-- Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-  <script src="{{ site.baseurl }}assets/js/respond.min.js"></script>
-<![endif]-->
+<link href="{{ site.baseurl }}assets/css/docs.min.css" rel="stylesheet">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}assets/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.baseurl }}assets/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.baseurl }}assets/ico/apple-touch-icon-72-precomposed.png">
                 <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}assets/ico/apple-touch-icon-57-precomposed.png">
-                               <link rel="shortcut icon" href="{{ site.baseurl }}assets/ico/favicon.png">
+                               <link rel="icon" href="{{ site.baseurl }}assets/ico/favicon.png">
